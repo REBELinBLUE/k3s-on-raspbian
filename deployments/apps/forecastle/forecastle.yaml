@@ -86,7 +86,7 @@ spec:
     spec:
       containers:
       - name: forecastle
-        image: rebelinblue/forecastle:1.0.36
+        image: rebelinblue/forecastle:1.0.40
         env:
           - name: KUBERNETES_NAMESPACE
             valueFrom:

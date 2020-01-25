@@ -74,8 +74,8 @@ docker push rebelinblue/fluxweb-frontend
 cd forecastle
 
 docker build -f Dockerfile \
-    --build-arg FORECASTLE_VERSION="v1.0.36" \
-    -t rebelinblue/forecastle:1.0.36 \
+    --build-arg FORECASTLE_VERSION="v1.0.40" \
+    -t rebelinblue/forecastle:1.0.40 \
     -t rebelinblue/forecastle:latest .
 
 docker push rebelinblue/forecastle
@@ -90,8 +90,8 @@ docker build -f Dockerfile \
     --build-arg KUBECTL_VERSION="v1.15.7" \
     --build-arg HELM_VERSION="v2.16.1" \
     --build-arg HELM3_VERSION="v3.0.1" \
-    --build-arg VERSION="1.0.0-rc7" \
-    -t rebelinblue/helm-operator:1.0.0-rc7 \
+    --build-arg VERSION="1.0.0-rc8" \
+    -t rebelinblue/helm-operator:1.0.0-rc8 \
     -t rebelinblue/helm-operator:latest .
 
 docker push rebelinblue/helm-operator
@@ -167,8 +167,8 @@ docker push rebelinblue/traefik-forward-auth
 cd vault
 
 docker build -f Dockerfile \
-    --build-arg VAULT_VERSION="1.3.1" \
-    -t rebelinblue/vault:1.3.1 \
+    --build-arg VAULT_VERSION="1.3.2" \
+    -t rebelinblue/vault:1.3.2 \
     -t rebelinblue/vault:latest .
 
 docker push rebelinblue/vault

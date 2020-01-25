@@ -90,7 +90,7 @@ spec:
       terminationGracePeriodSeconds: 10
       containers:
         - name: vault
-          image: rebelinblue/vault:1.3.1
+          image: rebelinblue/vault:1.3.2
           imagePullPolicy: Always
           ports:
             - name: api
