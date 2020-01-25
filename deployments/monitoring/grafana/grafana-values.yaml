@@ -2,7 +2,7 @@ fullnameOverride: grafana
 
 image:
   repository: grafana/grafana
-  tag: 6.5.2
+  tag: 6.5.3
 
 ingress:
   enabled: true

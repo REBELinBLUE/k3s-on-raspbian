@@ -1,8 +1,8 @@
 fullnameOverride: blackbox-exporter
 
 image:
-  repository: lwolf/blackbox-exporter
-  tag: v0.16.0-armv6
+  repository: prom/blackbox-exporter
+  tag: v0.16.0
 
 podDisruptionBudget:
   enabled: false
