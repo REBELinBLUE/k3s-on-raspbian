@@ -51,5 +51,7 @@ Thanks to the following pages
 * [BERLS USB 2.0 to DC Power Cord: 5.5 x 2.1mm Barrel Jack Connector](https://www.amazon.co.uk/gp/product/B07GRMJZ3M)
 * [MaGeek 1ft Micro USB 2.0 A Male to Micro B Cables](https://www.amazon.co.uk/gp/product/B00WMAQKS2)
 * 4 x [Raspberry Pi USB-C adapter](https://thepihut.com/products/usb-b-to-usb-c-adapter?variant=20064105988158)
-* [Jun_Electronic 4 Layers Stackable Case](https://www.amazon.co.uk/dp/product/B07BGWNWWR)
+* [Jun_Electronic 4 Layers Stackable Case](https://www.amazon.co.uk/gp/product/B07F6Y1MJ6)
 * A USB hard drive attached to the master
+
+![](./images/cluster.jpg)
