@@ -98,8 +98,8 @@ spec:
       targetPort: 4181
       protocol: TCP
 ---
+apiVersion: networking.k8s.io/v1beta1
 kind: Ingress
-apiVersion: extensions/v1beta1
 metadata:
   name: traefik-forward-auth-ingress
   namespace: infra

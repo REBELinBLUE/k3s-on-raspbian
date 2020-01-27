@@ -85,5 +85,6 @@ if [[ $1 = "confd" ]]; then
         exit 1
     fi
 else
+    # shellcheck disable=SC2068
     exec $@
 fi

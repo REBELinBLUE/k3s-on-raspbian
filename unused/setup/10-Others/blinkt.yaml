@@ -7,7 +7,7 @@ metadata:
   labels:
     app: blinkt-k8s-controller-sa
 ---
-apiVersion: rbac.authorization.k8s.io/v1beta1
+apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
 metadata:
   name: blinkt-k8s-controller-sa
@@ -23,11 +23,14 @@ subjects:
     namespace: infra
 ---
 kind: DaemonSet
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 metadata:
   name: blinkt-k8s-controller-pods
   namespace: infra
 spec:
+  selector:
+    matchLabels:
+      name: blinkt-k8s-controller-pods
   template:
     metadata:
       labels:
@@ -62,11 +65,14 @@ spec:
 
 ---
 kind: DaemonSet
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 metadata:
   name: blinkt-k8s-controller-nodes
   namespace: infra
 spec:
+  selector:
+    matchLabels:
+      name: blinkt-k8s-controller-nodes
   template:
     metadata:
       labels:
