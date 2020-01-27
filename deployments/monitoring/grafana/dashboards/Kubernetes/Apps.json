@@ -1101,7 +1101,7 @@
         "allValue": ".+",
         "current": {},
         "datasource": "Prometheus",
-   §     "hide": 0,
+        "hide": 0,
         "includeAll": false,
         "label": null,
         "multi": false,
