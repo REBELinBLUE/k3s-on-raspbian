@@ -279,7 +279,7 @@ curl -sfL https://get.k3s.io | K3S_URL=https://10.0.0.1:6443 K3S_TOKEN=... sh -
 ```
 
 ### On master
-Edit `se` and add `--kubelet-arg containerd=/run/k3s/containerd/containerd.sock` to `ExecStart`, then restart k3s
+Edit `/etc/systemd/system/k3s.service` and add `--kubelet-arg containerd=/run/k3s/containerd/containerd.sock` to `ExecStart`, then restart k3s
 
 ```bash
 sudo systemctl daemon-reload
