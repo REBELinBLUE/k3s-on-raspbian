@@ -59,7 +59,7 @@ spec:
                 path: config.yml
         - name: htpasswd
           secret:
-            secretName: docker-registry
+            secretName: docker-registry-auth
             items:
               - key: htpasswd
                 path: htpasswd
