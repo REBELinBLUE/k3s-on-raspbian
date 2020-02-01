@@ -1,9 +1,16 @@
 ingress:
   enabled: true
+  path: /
   hosts:
-    - registry.cluster.local
+    - registry.cluster.rebelinblue.com
   annotations:
     kubernetes.io/ingress.class: traefik
+    kubernetes.io/tls-acme: "true"
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+  tls:
+    - hosts:
+        - registry.cluster.rebelinblue.com
+      secretName: docker-registry-tls
 
 podAnnotations:
   prometheus.io/scrape: "true"
@@ -11,8 +18,8 @@ podAnnotations:
   prometheus.io/port: "5000"
 
 persistence:
-  enabled: true
   storageClass: nfs-hdd
+  enabled: true
 
 configData:
   version: 0.1
@@ -36,4 +43,4 @@ configData:
       threshold: 3
 
 secrets:
-  htpasswd: "admin:$2y$05$rpXybmSH1hDWeEb2IPx9i.D6ht1Vc1Phov2RyWHD38WD3Q/bT7zo."
+  haSharedSecret: docker-registry
