@@ -8,7 +8,7 @@ source "$REPO_ROOT/setup/.env"
 export VAULT_ADDR=$VAULT_ADDR
 export VAULT_TOKEN=$VAULT_ROOT_TOKEN
 
-kubectl -n infra create secret generic docker-registry-auth --from-literal=htpasswd=$(htpasswd -nb $REGISTRY_USERNAME $REGISTRY_PASSWORD)
+kubectl -n registry create secret generic docker-registry-auth --from-literal=htpasswd=$(htpasswd -nbB $REGISTRY_USERNAME $REGISTRY_PASSWORD)
 
 kubectl -n vault port-forward svc/vault 8200:8200 >/dev/null 2>&1 &
 VAULT_FWD_PID=$!
