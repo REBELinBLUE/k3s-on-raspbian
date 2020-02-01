@@ -2,16 +2,9 @@ ingress:
   enabled: true
   path: /
   hosts:
-#    - registry.cluster.rebelinblue.com
     - registry.cluster.local
   annotations:
     kubernetes.io/ingress.class: traefik
-#    kubernetes.io/tls-acme: "true"
-#    cert-manager.io/cluster-issuer: letsencrypt-prod
-#  tls:
-#    - hosts:
-#        - registry.cluster.rebelinblue.com
-#      secretName: docker-registry-tls
 
 podAnnotations:
   prometheus.io/scrape: "true"
