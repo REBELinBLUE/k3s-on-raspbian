@@ -3,6 +3,8 @@ kind: ConfigMap
 metadata:
   name: docker-registry
   namespace: infra
+  labels:
+    app: docker-registry
 data:
   registry-config.yml: |
     version: 0.1
@@ -36,6 +38,8 @@ apiVersion: apps/v1
 metadata:
   name: docker-registry
   namespace: infra
+  labels:
+    app: docker-registry
 spec:
   replicas: 1
   selector:
@@ -86,6 +90,8 @@ kind: PersistentVolumeClaim
 metadata:
   name: docker-registry-claim
   namespace: infra
+  labels:
+    app: docker-registry
 spec:
   storageClassName: nfs-hdd
   accessModes:
@@ -99,6 +105,11 @@ kind: Service
 metadata:
   name: docker-registry
   namespace: infra
+  labels:
+    app: docker-registry
+  annotations:
+    prometheus.io/scrape: "true"
+    prometheus.io/path: "/metrics"
 spec:
   ports:
     - protocol: TCP
@@ -112,6 +123,8 @@ kind: Ingress
 metadata:
   name: docker-registry
   namespace: infra
+  labels:
+    app: docker-registry
   annotations:
     kubernetes.io/ingress.class: traefik
     kubernetes.io/tls-acme: "true"

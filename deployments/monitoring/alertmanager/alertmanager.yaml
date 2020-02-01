@@ -185,8 +185,8 @@ metadata:
   labels:
     name: alertmanager
   annotations:
-    prometheus.io/scrape: 'true'
-    prometheus.io/path: '/metrics'
+    prometheus.io/scrape: "true"
+    prometheus.io/path: "/metrics"
 spec:
   selector:
     k8s-app: alertmanager
