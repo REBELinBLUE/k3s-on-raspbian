@@ -1,0 +1,16 @@
+apiVersion: helm.fluxcd.io/v1
+kind: HelmRelease
+metadata:
+  name: docker-registry
+  namespace: infra
+  annotations:
+    fluxcd.io/automated: "false"
+spec:
+  releaseName: docker-registry
+  chart:
+    repository: https://kubernetes-charts.storage.googleapis.com/
+    name: docker-registry
+    version: 1.9.1
+  valuesFrom:
+    - externalSourceRef:
+        url: https://raw.githubusercontent.com/REBELinBLUE/k8s-on-hypriot/master/deployments/infra/docker-registry/docker-registry-values.yaml
