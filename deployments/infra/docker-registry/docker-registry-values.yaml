@@ -1,6 +1,5 @@
 ingress:
   enabled: true
-  path: /
   hosts:
     - registry.cluster.local
   annotations:
@@ -12,6 +11,7 @@ podAnnotations:
   prometheus.io/port: "5000"
 
 persistence:
+  enabled: true
   storageClass: nfs-hdd
 
 configData:
