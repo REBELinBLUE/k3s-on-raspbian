@@ -22,6 +22,7 @@ data:
         addr: :5001
         prometheus:
           enabled: true
+          path: /metrics
       headers:
         X-Content-Type-Options: [nosniff]
     auth:
