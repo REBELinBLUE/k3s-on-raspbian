@@ -201,6 +201,19 @@ docker build -f Dockerfile \
 docker push rebelinblue/velero
 ```
 
+
+## Velero FS Freeze
+
+```bash
+cd velero-fsfreeze
+
+docker build -f Dockerfile \
+    -t rebelinblue/velero-fsfreeze:0.0.1 \
+    -t rebelinblue/velero-fsfreeze:latest .
+
+docker push rebelinblue/velero-fsfreeze
+```
+
 ## Velero AWS Plug-in
    
 ```bash
