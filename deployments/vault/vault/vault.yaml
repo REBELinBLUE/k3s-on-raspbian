@@ -109,7 +109,7 @@ spec:
               cpu: 50m
               memory: 32Mi
           command:
-            - "/bin/bash"
+            - "/bin/sh"
             - "-c"
             - "sleep infinity"
         - name: vault
