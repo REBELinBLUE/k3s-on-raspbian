@@ -27,7 +27,7 @@ sleep 2
 
 VAULT_READY=1
 while [ $VAULT_READY != 0 ]; do
-    init_status=$(kubectl -n vault exec "vault-0" -- vault status -format=json 2>/dev/null | jq -r '.initialized')
+    init_status=$(kubectl -n vault exec "vault-0" -c vault  -- vault status -format=json 2>/dev/null | jq -r '.initialized')
     if [ "$init_status" == "false" ] || [ "$init_status" == "true" ]; then
         VAULT_READY=0
     else
@@ -36,11 +36,11 @@ while [ $VAULT_READY != 0 ]; do
     fi
 done
 
-sealed_status=$(kubectl -n vault exec "vault-0" -- vault status -format=json 2>/dev/null | jq -r '.sealed')
-init_status=$(kubectl -n vault exec "vault-0" -- vault status -format=json 2>/dev/null | jq -r '.initialized')
+sealed_status=$(kubectl -n vault exec "vault-0" -c vault -- vault status -format=json 2>/dev/null | jq -r '.sealed')
+init_status=$(kubectl -n vault exec "vault-0" -c vault -- vault status -format=json 2>/dev/null | jq -r '.initialized')
 
 if [ "$init_status" == "false" ]; then
-    vault_init=$(kubectl -n vault exec "vault-0" -- vault operator init -format json -recovery-shares=5 -recovery-threshold=3) || exit 1
+    vault_init=$(kubectl -n vault exec "vault-0" -c vault -- vault operator init -format json -recovery-shares=5 -recovery-threshold=3) || exit 1
 
     export VAULT_UNSEAL_KEY_1=$(echo $vault_init | jq -r '.unseal_keys_b64[0]')
     export VAULT_UNSEAL_KEY_2=$(echo $vault_init | jq -r '.unseal_keys_b64[1]')
@@ -73,9 +73,9 @@ fi
 
 if [ "$sealed_status" == "true" ]; then
     message "Unsealing vault"
-    kubectl -n vault exec "vault-0" -- vault operator unseal "$VAULT_UNSEAL_KEY_1" || exit 1
-    kubectl -n vault exec "vault-0" -- vault operator unseal "$VAULT_UNSEAL_KEY_2" || exit 1
-    kubectl -n vault exec "vault-0" -- vault operator unseal "$VAULT_UNSEAL_KEY_3" || exit 1
+    kubectl -n vault exec "vault-0" -c vault -- vault operator unseal "$VAULT_UNSEAL_KEY_1" || exit 1
+    kubectl -n vault exec "vault-0" -c vault -- vault operator unseal "$VAULT_UNSEAL_KEY_2" || exit 1
+    kubectl -n vault exec "vault-0" -c vault -- vault operator unseal "$VAULT_UNSEAL_KEY_3" || exit 1
 fi
 
 sleep 5
