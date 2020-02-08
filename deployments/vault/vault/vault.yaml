@@ -77,14 +77,20 @@ spec:
   template:
     metadata:
       name: vault
-      #annotations:
-      #  pre.hook.backup.velero.io/container: velero-fsfreeze
-      #  pre.hook.backup.velero.io/command: '["/sbin/fsfreeze", "--freeze", "/vault/data/"]'
-      #  post.hook.backup.velero.io/container: velero-fsfreeze
-      #  post.hook.backup.velero.io/command: '["/sbin/fsfreeze", "--unfreeze", "/vault/data/"]'
+      annotations:
+        pre.hook.backup.velero.io/container: velero-fsfreeze
+        pre.hook.backup.velero.io/command: '["/sbin/fsfreeze", "--freeze", "/vault/data/"]'
+        post.hook.backup.velero.io/container: velero-fsfreeze
+        post.hook.backup.velero.io/command: '["/sbin/fsfreeze", "--unfreeze", "/vault/data/"]'
       labels:
         app: vault
     spec:
+      tolerations:
+        - effect: NoSchedule
+          key: node-role.kubernetes.io/master
+      nodeSelector:
+        beta.kubernetes.io/arch: arm
+        node-role.kubernetes.io/master: "true"
       affinity:
         podAntiAffinity:
           requiredDuringSchedulingIgnoredDuringExecution:
@@ -94,20 +100,20 @@ spec:
               topologyKey: kubernetes.io/hostname
       terminationGracePeriodSeconds: 10
       containers:
-#        - name: velero-fsfreeze
-#          image: rebelinblue/velero-fsfreeze:latest
-#          volumeMounts:
-#            - name: vault-data
-#              mountPath: /vault/data/
-#          securityContext:
-#            privileged: true
-#          resources:
-#            requests:
-#              cpu: 50m
-#              memory: 32Mi
-#            limits:
-#              cpu: 50m
-#              memory: 32Mi
+        - name: velero-fsfreeze
+          image: rebelinblue/velero-fsfreeze:latest
+          volumeMounts:
+            - name: vault-data
+              mountPath: /vault/data/
+          securityContext:
+            privileged: true
+          resources:
+            requests:
+              cpu: 50m
+              memory: 32Mi
+            limits:
+              cpu: 50m
+              memory: 32Mi
         - name: vault
           image: rebelinblue/vault:1.3.2
           imagePullPolicy: Always
@@ -219,7 +225,7 @@ spec:
     - metadata:
         name: vault-data
       spec:
-        storageClassName: nfs-hdd
+        storageClassName: local-path
         accessModes:
           - ReadWriteOnce
         resources:
