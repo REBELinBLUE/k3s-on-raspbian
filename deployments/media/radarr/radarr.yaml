@@ -1,15 +1,15 @@
 apiVersion: helm.fluxcd.io/v1
 kind: HelmRelease
 metadata:
-  name: sonarr
+  name: radarr
   namespace: media
   annotations:
     fluxcd.io/automated: "false"
 spec:
-  releaseName: sonarr
+  releaseName: radarr
   chart:
     repository: https://bananaspliff.github.io/geek-charts
-    name: sonarr
+    name: radarr
     version: 0.1.0
   values:
     replicaCount: 1
@@ -20,28 +20,27 @@ spec:
       - name: PGID
         value: "1000"
 
+    image:
+      repository: linuxserver/radarr
+      tag: preview
 
     service:
       type: ClusterIP
-      port: 8989
-
-    image:
-      repository: linuxserver/sonarr
-      tag: preview
+      port: 7878
 
     ingress:
-      enabled: true
+      enabled: false
       annotations:
         kubernetes.io/ingress.class: traefik
         kubernetes.io/tls-acme: "true"
         cert-manager.io/cluster-issuer: letsencrypt-prod
       path: /
       hosts:
-        - sonarr.cluster.rebelinblue.com
+        - radarr.cluster.rebelinblue.com
       tls:
         - hosts:
-            - sonarr.cluster.rebelinblue.com
-          secretName: sonarr-tls
+            - radarr.cluster.rebelinblue.com
+          secretName: radarr-tls
 
     volumes:
       - name: media
@@ -55,7 +54,7 @@ spec:
     volumeMounts:
       - name: media
         mountPath: /config
-        subPath: sonarr
+        subPath: radarr
       - name: files
         mountPath: /media/NAS
 
