@@ -117,28 +117,3 @@ spec:
       targetPort: 32400
   selector:
     app: plex
----
-apiVersion: networking.k8s.io/v1beta1
-kind: Ingress
-metadata:
-  name: plex
-  namespace: media
-  labels:
-    app: plex
-  annotations:
-    kubernetes.io/ingress.class: traefik
-    kubernetes.io/tls-acme: "true"
-    cert-manager.io/cluster-issuer: letsencrypt-prod
-spec:
-  rules:
-    - host: plex.cluster.rebelinblue.com
-      http:
-        paths:
-          - path: /
-            backend:
-              serviceName: plex
-              servicePort: 32400
-  tls:
-    - hosts:
-        - plex.cluster.rebelinblue.com
-      secretName: plex-tls
