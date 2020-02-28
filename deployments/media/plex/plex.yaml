@@ -9,8 +9,6 @@ spec:
   selector:
     matchLabels:
       app: plex
-  strategy:
-    type: Recreate
   template:
     metadata:
       labels:
@@ -103,52 +101,6 @@ spec:
           nfs:
             path: /nfs/Media
             server: 192.168.1.112
----
-apiVersion: rbac.authorization.k8s.io/v1
-kind: Role
-metadata:
-  name: plex
-  labels:
-    app: plex
-rules:
-  - apiGroups:
-      - ""
-    resources:
-      - pods
-      - pods/attach
-      - pods/exec
-      - pods/portforward
-      - pods/proxy
-    verbs:
-      - create
-      - delete
-      - deletecollection
-      - get
-      - list
-      - patch
-      - update
-      - watch
----
-apiVersion: rbac.authorization.k8s.io/v1
-kind: RoleBinding
-metadata:
-  name: plex
-  namespace: media
-  labels:
-    app: plex
-roleRef:
-  apiGroup: rbac.authorization.k8s.io
-  kind: Role
-  name: plex
-subjects:
-  - kind: ServiceAccount
-    name: plex
-    namespace: media
----
-apiVersion: v1
-kind: ServiceAccount
-metadata:
-  name: plex
 ---
 apiVersion: v1
 kind: Service
