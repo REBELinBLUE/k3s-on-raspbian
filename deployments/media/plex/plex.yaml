@@ -20,6 +20,7 @@ spec:
       nodeSelector:
         beta.kubernetes.io/arch: arm
         node-role.kubernetes.io/master: "true"
+      hostNetwork: true
       containers:
         - env:
             - name: TZ
