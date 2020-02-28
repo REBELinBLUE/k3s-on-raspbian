@@ -39,6 +39,10 @@ spec:
             - name: config
               mountPath: /config
               subPath: tautulli
+            - name: config
+              mountPath: /logs
+              subPath: plex/logs
+              readOnly: true
       volumes:
         - name: config
           persistentVolumeClaim:
