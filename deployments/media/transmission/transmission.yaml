@@ -1,0 +1,92 @@
+apiVersion: helm.fluxcd.io/v1
+kind: HelmRelease
+metadata:
+  name: transmission
+  namespace: media
+  annotations:
+    fluxcd.io/automated: "false"
+spec:
+  releaseName: transmission
+  chart:
+    repository: https://bananaspliff.github.io/geek-charts
+    name: transmission-openvpn
+    version: 0.1.0
+  values:
+    fullnameOverride: transmission
+    replicaCount: 1
+
+    image:
+      repository: haugene/transmission-openvpn
+      tag: latest-armhf
+      pullPolicy: IfNotPresent
+
+    env:
+      - name: OPENVPN_PROVIDER
+        value: NORDVPN
+      - name: OPENVPN_USERNAME
+        valueFrom:
+          secretKeyRef:
+            name: "openvpn"
+            key: "username"
+      - name: OPENVPN_PASSWORD
+        valueFrom:
+          secretKeyRef:
+            name: "openvpn"
+            key: "password"
+      - name: NORDVPN_PROTOCOL
+        value: TCP
+      - name: NORDVPN_COUNTRY
+        value: CH
+      - name: NORDVPN_CATEGORY
+        value: P2P
+      - name: LOCAL_NETWORK
+        value: 192.168.0.0/24"
+      - name: TRANSMISSION_PEER_PORT
+        value: "47444"
+      - name: TRANSMISSION_DOWNLOAD_DIR
+        value: /downloads/transmission
+      - name: PUID
+        value: "1000"
+      - name: PGID
+        value: "1000"
+
+    service:
+      type: ClusterIP
+      port: 9091
+
+    ingress:
+      enabled: true
+      annotations:
+        kubernetes.io/ingress.class: traefik
+        kubernetes.io/tls-acme: "true"
+        cert-manager.io/cluster-issuer: letsencrypt-prod
+      path: /
+      hosts:
+        - transmission.cluster.rebelinblue.com
+      tls:
+        - hosts:
+            - transmission.cluster.rebelinblue.com
+          secretName: transmission-tls
+
+    volumes:
+      - name: media
+        persistentVolumeClaim:
+          claimName: media
+      - name: devtun
+        hostPath:
+          path: /dev/net/tun
+
+    volumeMounts:
+      - name: media
+        mountPath: /data
+        subPath: transmission
+      - name: media
+        mountPath: /downloads/transmission
+        subPath: downloads
+      - name: devtun
+        mountPath: /dev/net/tun
+
+    securityContext:
+      capabilities:
+        add:
+          - NET_ADMIN

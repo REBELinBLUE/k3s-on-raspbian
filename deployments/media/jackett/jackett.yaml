@@ -1,0 +1,84 @@
+apiVersion: helm.fluxcd.io/v1
+kind: HelmRelease
+metadata:
+  name: jackett
+  namespace: media
+  annotations:
+    fluxcd.io/automated: "false"
+spec:
+  releaseName: jackett
+  chart:
+    repository: https://bananaspliff.github.io/geek-charts
+    name: jackett
+    version: 0.1.0
+  values:
+    fullnameOverride: jackett
+    replicaCount: 1
+
+    image:
+      repository: angelnu/jackett
+      tag: latest-arm
+      pullPolicy: IfNotPresent
+
+    env:
+      - name: VPN_ENABLED
+        value: "yes"
+      - name: VPN_USERNAME
+        valueFrom:
+          secretKeyRef:
+            name: "openvpn"
+            key: "username"
+      - name: VPN_PASSWORD
+        valueFrom:
+          secretKeyRef:
+            name: "openvpn"
+            key: "password"
+      - name: LAN_NETWORK
+        value: "192.168.0.0/24"
+      - name: CREATE_TUN_DEVICE
+        value: "false"
+      - name: PUID
+        value: "1000"
+      - name: PGID
+        value: "1000"
+
+    service:
+      type: ClusterIP
+      port: 9117
+
+#    ingress:
+#      enabled: true
+#      annotations:
+#        kubernetes.io/ingress.class: traefik
+#        kubernetes.io/tls-acme: "true"
+#        cert-manager.io/cluster-issuer: letsencrypt-prod
+#      path: /
+#      hosts:
+#        - jackett.cluster.rebelinblue.com
+#      tls:
+#        - hosts:
+#            - jackett.cluster.rebelinblue.com
+#          secretName: jackett-tls
+
+    volumes:
+      - name: media
+        persistentVolumeClaim:
+          claimName: media
+      - name: devtun
+        hostPath:
+          path: /dev/net/tun
+
+    volumeMounts:
+      - name: media
+        mountPath: /config
+        subPath: jackett
+      - name: media
+        mountPath: /downloads/jackett
+        subPath: downloads
+      - name: devtun
+        mountPath: /dev/net/tun
+
+    securityContext:
+      capabilities:
+        add:
+          - NET_ADMIN
