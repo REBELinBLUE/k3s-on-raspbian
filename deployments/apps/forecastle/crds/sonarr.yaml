@@ -1,0 +1,13 @@
+apiVersion: forecastle.stakater.com/v1alpha1
+kind: ForecastleApp
+metadata:
+  name: sonarr
+  namespace: media
+spec:
+  name: Sonarr
+  group: Media
+  icon: https://user-images.githubusercontent.com/31781818/33885790-bc32aec0-df1a-11e7-83df-3bf737de68c5.png
+  networkRestricted: true
+  urlFrom:
+    ingressRef:
+      name: sonarr

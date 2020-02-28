@@ -1,0 +1,13 @@
+apiVersion: forecastle.stakater.com/v1alpha1
+kind: ForecastleApp
+metadata:
+  name: plex
+  namespace: media
+spec:
+  name: Plex
+  group: Media
+  icon: https://cdn.icon-icons.com/icons2/2108/PNG/512/plex_icon_130854.png
+  networkRestricted: true
+  urlFrom:
+    ingressRef:
+      name: plex
