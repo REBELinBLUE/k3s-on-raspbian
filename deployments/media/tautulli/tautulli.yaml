@@ -1,0 +1,86 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tautulli
+  namespace: media
+  labels:
+    app: tautulli
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: tautulli
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: tautulli
+    spec:
+      containers:
+        - name: tautulli
+          image: linuxserver/tautulli
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8181
+          env:
+            - name: PUID
+              value: "1000"
+            - name: PGID
+              value: "1000"
+            - name: TZ
+              value: Europe/London
+          livenessProbe:
+            failureThreshold: 10000
+            httpGet:
+              path: /
+              port: 8181
+          volumeMounts:
+            - name: config
+              mountPath: /config
+              subPath: tautulli
+      volumes:
+        - name: config
+          persistentVolumeClaim:
+            claimName: media
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: tautulli
+  namespace: media
+  labels:
+    app: tautulli
+spec:
+  ports:
+    - port: 8181
+      targetPort: 8181
+      protocol: TCP
+      name: http
+  selector:
+    app: tautulli
+---
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: tautulli
+  namespace: media
+  labels:
+    app: tautulli
+  annotations:
+    kubernetes.io/ingress.class: traefik
+    kubernetes.io/tls-acme: "true"
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+spec:
+  rules:
+    - host: tautulli.cluster.rebelinblue.com
+      http:
+        paths:
+          - path: /
+            backend:
+              serviceName: tautulli
+              servicePort: 8181
+  tls:
+    - hosts:
+        - tautulli.cluster.rebelinblue.com
+      secretName: tautulli-tls

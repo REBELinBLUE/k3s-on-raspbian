@@ -1,0 +1,164 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: plex
+  namespace: media
+  labels:
+    app: plex
+spec:
+  selector:
+    matchLabels:
+      app: plex
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: plex
+    spec:
+      containers:
+        - env:
+            - name: TZ
+              value: Europe/London
+            - name: PMS_INTERNAL_ADDRESS
+              value: http://plex:32400
+            - name: PMS_IMAGE
+              value: linuxserver/plex:arm32v7-latest
+            - name: KUBE_NAMESPACE
+              valueFrom:
+                fieldRef:
+                  apiVersion: v1
+                  fieldPath: metadata.namespace
+            - name: PUID
+              value: "1000"
+            - name: PGID
+              value: "1000"
+          image: linuxserver/plex:arm32v7-latest
+          imagePullPolicy: IfNotPresent
+          livenessProbe:
+            failureThreshold: 3
+            httpGet:
+              path: /identity
+              port: 32400
+              scheme: HTTP
+            initialDelaySeconds: 10
+            periodSeconds: 10
+            successThreshold: 1
+            timeoutSeconds: 10
+          name: plex
+          ports:
+            - containerPort: 32400
+          readinessProbe:
+            failureThreshold: 3
+            httpGet:
+              path: /identity
+              port: 32400
+              scheme: HTTP
+            initialDelaySeconds: 15
+            periodSeconds: 10
+            successThreshold: 1
+            timeoutSeconds: 5
+          volumeMounts:
+            - name: media
+              mountPath: /config
+              subPath: plex
+            - name: files
+              mountPath: /media/NAS
+              readOnly: true
+      hostname: plex
+      volumes:
+        - name: media
+          persistentVolumeClaim:
+            claimName: media
+        - name: files
+          nfs:
+            path: /nfs/Media
+            server: 192.168.1.112
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: plex
+  labels:
+    app: plex
+rules:
+  - apiGroups:
+      - ""
+    resources:
+      - pods
+      - pods/attach
+      - pods/exec
+      - pods/portforward
+      - pods/proxy
+    verbs:
+      - create
+      - delete
+      - deletecollection
+      - get
+      - list
+      - patch
+      - update
+      - watch
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: plex
+  namespace: media
+  labels:
+    app: plex
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: plex
+subjects:
+  - kind: ServiceAccount
+    name: plex
+    namespace: media
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: plex
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: plex
+  namespace: media
+  labels:
+    app: plex
+spec:
+  type: ClusterIP
+  ports:
+    - port: 32400
+      targetPort: 32400
+      protocol: TCP
+      name: http
+  selector:
+    app: plex
+---
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: plex
+  namespace: media
+  labels:
+    app: plex
+  annotations:
+    kubernetes.io/ingress.class: traefik
+    kubernetes.io/tls-acme: "true"
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+spec:
+  rules:
+    - host: plex.cluster.rebelinblue.com
+      http:
+        paths:
+          - path: /
+            backend:
+              serviceName: plex
+              servicePort: 32400
+  tls:
+    - hosts:
+        - plex.cluster.rebelinblue.com
+      secretName: plex-tls

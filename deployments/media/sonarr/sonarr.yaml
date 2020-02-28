@@ -1,0 +1,63 @@
+apiVersion: helm.fluxcd.io/v1
+kind: HelmRelease
+metadata:
+  name: sonarr
+  namespace: media
+  annotations:
+    fluxcd.io/automated: "false"
+spec:
+  releaseName: sonarr
+  chart:
+    repository: https://bananaspliff.github.io/geek-charts
+    name: sonarr
+    version: 0.1.0
+  values:
+    replicaCount: 1
+
+    env:
+      - name: PUID
+        value: "1000"
+      - name: PGID
+        value: "1000"
+
+    image:
+      repository: linuxserver/sonarr
+      tag: preview
+
+    ingress:
+      enabled: true
+      annotations:
+        kubernetes.io/ingress.class: traefik
+        kubernetes.io/tls-acme: "true"
+        cert-manager.io/cluster-issuer: letsencrypt-prod
+      path: /
+      hosts:
+        - sonarr.cluster.rebelinblue.com
+      tls:
+        - hosts:
+            - sonarr.cluster.rebelinblue.com
+          secretName: sonarr-tls
+
+    volumes:
+      - name: media
+        persistentVolumeClaim:
+          claimName: media
+      - name: files
+        nfs:
+          path: /nfs/Media
+          server: 192.168.1.112
+
+    volumeMounts:
+      - name: media
+        mountPath: /config
+        subPath: sonarr
+      - name: files
+        mountPath: /media/NAS
+
+    resources:
+      requests:
+        memory: 128Mi
+        cpu: 0.1
+      limits:
+        memory: 256Mi
+        cpu: 0.5
