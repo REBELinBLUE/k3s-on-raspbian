@@ -29,13 +29,6 @@ spec:
               value: Europe/London
             - name: PMS_INTERNAL_ADDRESS
               value: http://plex:32400
-            - name: PMS_IMAGE
-              value: linuxserver/plex:arm32v7-latest
-            - name: KUBE_NAMESPACE
-              valueFrom:
-                fieldRef:
-                  apiVersion: v1
-                  fieldPath: metadata.namespace
             - name: PUID
               value: "1000"
             - name: PGID
