@@ -6,6 +6,8 @@ metadata:
   labels:
     app: plex
 spec:
+  strategy:
+    type: Recreate
   selector:
     matchLabels:
       app: plex
@@ -60,6 +62,18 @@ spec:
               containerPort: 32401
               hostPort: 32401
               protocol: TCP
+            - name: dlna
+              containerPort: 1900
+              hostPort: 1900
+              protocol: UDP
+            - name: control
+              containerPort: 3005
+              hostPort: 3005
+              protocol: TCP
+            - name: avahi
+              containerPort: 5353
+              hostPort: 5353
+              protocol: UDP
             - name: discovery0
               containerPort: 32410
               hostPort: 32410
@@ -76,6 +90,10 @@ spec:
               containerPort: 32414
               hostPort: 32414
               protocol: UDP
+            - name: dlna2
+              containerPort: 32469
+              hostPort: 32469
+              protocol: TCP
 #          readinessProbe:
 #            failureThreshold: 3
 #            httpGet:
