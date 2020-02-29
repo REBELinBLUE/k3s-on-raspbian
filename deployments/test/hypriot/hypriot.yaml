@@ -21,7 +21,7 @@ metadata:
   labels:
     app: hypriot
 spec:
-  replicas: 3
+  replicas: 0
   selector:
     matchLabels:
       app: hypriot

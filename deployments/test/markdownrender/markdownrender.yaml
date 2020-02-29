@@ -22,7 +22,7 @@ metadata:
   labels:
     app: markdownrender
 spec:
-  replicas: 2
+  replicas: 0
   selector:
     matchLabels:
       app: markdownrender

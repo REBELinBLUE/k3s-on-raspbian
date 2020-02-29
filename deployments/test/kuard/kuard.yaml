@@ -56,7 +56,7 @@ spec:
   selector:
     matchLabels:
       app: kuard
-  replicas: 1
+  replicas: 0
   strategy:
     type: RollingUpdate
     rollingUpdate:
