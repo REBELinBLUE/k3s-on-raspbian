@@ -116,9 +116,9 @@ docker push rebelinblue/kubeview
 cd kured
 
 docker build -f Dockerfile \
-    --build-arg KUBECTL_VERSION="v1.14.7" \
-    --build-arg VERSION="master" \
-    -t rebelinblue/kured:1.2.0 \
+    --build-arg KUBECTL_VERSION="v1.15.10" \
+    --build-arg VERSION="1.3.0" \
+    -t rebelinblue/kured:1.3.0 \
     -t rebelinblue/kured:latest .
 
 docker push rebelinblue/kured
