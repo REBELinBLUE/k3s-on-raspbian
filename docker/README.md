@@ -74,8 +74,8 @@ docker push rebelinblue/fluxweb-frontend
 cd forecastle
 
 docker build -f Dockerfile \
-    --build-arg FORECASTLE_VERSION="v1.0.40" \
-    -t rebelinblue/forecastle:1.0.40 \
+    --build-arg FORECASTLE_VERSION="v1.0.42" \
+    -t rebelinblue/forecastle:1.0.42 \
     -t rebelinblue/forecastle:latest .
 
 docker push rebelinblue/forecastle
