@@ -8,5 +8,5 @@ persistence:
   storageClassName: nfs-hdd
 
 enterprise:
-  enabled: false
+  enabled: true
   clusterSize: 0
