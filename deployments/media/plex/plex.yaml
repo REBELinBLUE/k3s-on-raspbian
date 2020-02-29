@@ -51,10 +51,6 @@ spec:
               containerPort: 32400
               hostPort: 32400
               protocol: TCP
-            - name: wan
-              containerPort: 32401
-              hostPort: 32401
-              protocol: TCP
             - name: dlna
               containerPort: 1900
               hostPort: 1900
