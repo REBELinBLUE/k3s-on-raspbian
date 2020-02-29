@@ -23,6 +23,17 @@ spec:
         beta.kubernetes.io/arch: arm
         node-role.kubernetes.io/master: "true"
       hostNetwork: true
+      initContainers:
+        - name: init-remove-pid
+          image: alpine
+          command:
+            - /bin/sh
+            - "-c"
+            - "sleep 60m"
+          volumeMounts:
+            - name: media
+              mountPath: /config
+              subPath: plex
       containers:
         - env:
             - name: TZ
