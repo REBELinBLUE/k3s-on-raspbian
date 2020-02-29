@@ -89,9 +89,9 @@ cd helm-operator
 docker build -f Dockerfile \
     --build-arg KUBECTL_VERSION="v1.15.7" \
     --build-arg HELM_VERSION="v2.16.1" \
-    --build-arg HELM3_VERSION="v3.0.1" \
-    --build-arg VERSION="1.0.0-rc8" \
-    -t rebelinblue/helm-operator:1.0.0-rc8 \
+    --build-arg HELM3_VERSION="v3.1.1" \
+    --build-arg VERSION="1.0.0-rc9" \
+    -t rebelinblue/helm-operator:1.0.0-rc9 \
     -t rebelinblue/helm-operator:latest .
 
 docker push rebelinblue/helm-operator
