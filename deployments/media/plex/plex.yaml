@@ -29,7 +29,7 @@ spec:
           command:
             - /bin/sh
             - "-c"
-            - "sleep 60m"
+            - "rm '/config/Library/Application Support/Plex Media Server/plexmediaserver.pid' || true"
           volumeMounts:
             - name: media
               mountPath: /config
