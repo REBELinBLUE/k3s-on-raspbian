@@ -2,7 +2,7 @@ fullnameOverride: influxdb
 
 image:
   repository: arm32v7/influxdb
-  tag: 1.7.9
+  tag: 1.7.10
 
 persistence:
   storageClassName: nfs-hdd
