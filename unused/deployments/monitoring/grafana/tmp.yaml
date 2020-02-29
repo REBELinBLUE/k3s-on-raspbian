@@ -1,0 +1,17 @@
+datasources:
+  datasources.yaml:
+    apiVersion: 1
+    datasources:
+      - name: Speedtests
+        type: influxdb
+        database: speedtests
+        url: http://influxdb.monitoring.svc:8086
+        access: proxy
+        editable: false
+        isDefault: false
+
+
+dashboards:
+  default:
+    speedtest:
+      url: https://raw.githubusercontent.com/REBELinBLUE/k8s-on-hypriot/master/deployments/monitoring/grafana/dashboards/General/Speedtest.json

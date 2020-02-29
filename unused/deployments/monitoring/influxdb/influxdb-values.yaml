@@ -6,7 +6,3 @@ image:
 
 persistence:
   storageClassName: nfs-hdd
-
-enterprise:
-  enabled: true
-  clusterSize: 0

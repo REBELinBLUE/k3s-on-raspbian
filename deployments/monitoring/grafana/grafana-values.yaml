@@ -49,13 +49,6 @@ datasources:
         access: proxy
         editable: false
         isDefault: false
-      - name: Speedtests
-        type: influxdb
-        database: speedtests
-        url: http://influxdb.monitoring.svc:8086
-        access: proxy
-        editable: false
-        isDefault: false
 
 grafana.ini:
   paths:
@@ -110,8 +103,6 @@ dashboardProviders:
 
 dashboards:
   default:
-    speedtest:
-      url: https://raw.githubusercontent.com/REBELinBLUE/k8s-on-hypriot/master/deployments/monitoring/grafana/dashboards/General/Speedtest.json
     certmanager:
       url: https://raw.githubusercontent.com/REBELinBLUE/k8s-on-hypriot/master/deployments/monitoring/grafana/dashboards/General/CertManager.json
     traefik:
