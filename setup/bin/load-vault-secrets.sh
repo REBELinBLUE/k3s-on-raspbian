@@ -114,8 +114,8 @@ vault kv put apps/infra/traefik-forward-auth CLIENT_ID="$OAUTH_CLIENT_ID" \
                                              CLIENT_SECRET="$OAUTH_CLIENT_SECRET" \
                                              SECRET="$OAUTH_SECRET"
 
-"${REPO_ROOT}/setup/bin/create-app-role.sh" test kuard
-
-vault kv put apps/test/kuard/example FOO="bar"
+#"${REPO_ROOT}/setup/bin/create-app-role.sh" test kuard
+#
+#vault kv put apps/test/kuard/example FOO="bar"
 
 kill $VAULT_FWD_PID || true
