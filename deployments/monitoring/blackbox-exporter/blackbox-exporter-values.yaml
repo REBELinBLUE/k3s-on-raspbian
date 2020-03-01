@@ -21,6 +21,7 @@ config:
         valid_status_codes:
           - 200
           - 301
+          - 303
           - 307
           - 401
           - 403
