@@ -1,0 +1,44 @@
+replicaCount: 1
+
+image:
+  repository: rodriguezst/filebrowser-multiarch
+  tag: latest
+  pullPolicy: IfNotPresent
+
+service:
+  type: ClusterIP
+  port: 8080
+
+ingress:
+  enabled: false
+  annotations:
+    kubernetes.io/ingress.class: traefik
+    kubernetes.io/tls-acme: "true"
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+  path: /
+  hosts:
+    - media.cluster.rebelinblue.com
+  tls:
+    - hosts:
+        - media.cluster.rebelinblue.com
+      secretName: media-tls
+
+volumes:
+  - name: media
+    persistentVolumeClaim:
+      claimName: media
+  - name: files
+    nfs:
+      path: /nfs/Media
+      server: 192.168.1.112
+
+volumeMounts:
+  - name: media
+    mountPath: /etc/config.json
+    subPath: filebrowser/config.json
+  - name: media
+    mountPath: /etc/database.db
+    subPath: filebrowser/database.db
+  - name: files
+    mountPath: /srv
+    readOnly: true

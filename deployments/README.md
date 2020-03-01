@@ -1,9 +1,7 @@
 # Deployments Not Using HelmRelease
 
 - **flux**
-    - **flux** - Using chart but not helm operator
     - **flux-cloud** - No chart exists
-    - **helm-operator** - Using chart but not helm operator
 - **infra**
     - **linode-dynamic-dns** - Custom app
     - **minio** - Doesn't support initContainer

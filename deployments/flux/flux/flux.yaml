@@ -10,7 +10,7 @@ spec:
   chart:
     repository: https://charts.fluxcd.io/
     name: flux
-    version: 1.1.0
+    version: 1.2.0
   valuesFrom:
     - externalSourceRef:
         url: https://raw.githubusercontent.com/REBELinBLUE/k8s-on-hypriot/master/deployments/flux/flux/flux-values.yaml
