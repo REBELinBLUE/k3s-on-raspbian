@@ -10,7 +10,7 @@ spec:
   chart:
     repository: https://charts.jetstack.io
     name: cert-manager
-    version: v0.1.0
+    version: v0.13.1
 valuesFrom:
   - externalSourceRef:
       url: https://raw.githubusercontent.com/REBELinBLUE/k8s-on-hypriot/master/deployments/cert-manager/cert-manager/cert-manager-values.yaml
