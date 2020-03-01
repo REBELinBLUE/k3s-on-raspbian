@@ -175,12 +175,12 @@ data:
     namespaceSelector:
       matchNames:
         - logging
+        - media
         - monitoring
         - kubernetes-dashboard
         - apps
         - infra
         - kube-system
-        - devops
         - vault
     title: Launch Pad
 ---
