@@ -39,7 +39,7 @@ spec:
             - name: TZ
               value: Europe/London
             - name: PMS_INTERNAL_ADDRESS
-              value: http://plex:32400
+              value: http://master:32400
             - name: PUID
               value: "1000"
             - name: PGID
