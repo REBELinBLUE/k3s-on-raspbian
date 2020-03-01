@@ -170,8 +170,5 @@ spec:
         - name: export
           persistentVolumeClaim:
             claimName: minio
-        - name: minio-user
-          secret:
-            secretName: minio
         - name: minio-config-dir
           emptyDir: {}
