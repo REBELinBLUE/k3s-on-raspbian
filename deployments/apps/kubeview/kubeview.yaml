@@ -17,7 +17,7 @@ rules:
     resources: ["deployments", "replicasets", "daemonsets", "statefulsets"]
     verbs: ["get", "list"]
   - apiGroups: [""]
-    resources: ["pods", "ingresses", "events", "endpoints", "namespaces", "nodes", "persistentvolumes", "persistentvolumeclaims", "resourcequotas", "services"]
+    resources: ["pods", "configmaps", "secrets", "ingresses", "events", "endpoints", "namespaces", "nodes", "persistentvolumes", "persistentvolumeclaims", "resourcequotas", "services"]
     verbs: ["get", "list"]
   - nonResourceURLs: ["*"]
     verbs: ["get", "list"]
