@@ -81,7 +81,7 @@ spec:
               memory: 128Mi
               cpu: 0.1
             limits:
-              memory: 512Mi
+              memory: 768Mi
               cpu: 0.75
           volumeMounts:
             - name: prometheus-config-volume
