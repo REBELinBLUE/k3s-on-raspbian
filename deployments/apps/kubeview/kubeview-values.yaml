@@ -1,0 +1,34 @@
+replicaCount: 1
+
+image:
+  repository: rebelinblue/kubeview
+  tag: 0.1.10
+  pullPolicy: IfNotPresent
+
+nameOverride: kubeview
+
+ingress:
+  enabled: true
+  annotations:
+    kubernetes.io/ingress.class: traefik
+    kubernetes.io/tls-acme: "true"
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+    ingress.kubernetes.io/auth-type: forward
+    ingress.kubernetes.io/auth-url: http://traefik-forward-auth.infra.svc
+    ingress.kubernetes.io/auth-response-headers: X-Forwarded-User
+  hosts:
+    - host: kubeview.cluster.rebelinblue.com
+      paths: ["/"]
+
+  tls:
+    - hosts:
+        - kubeview.cluster.rebelinblue.com
+      secretName: kubeview-tls
+
+resources:
+  limits:
+    cpu: 100m
+    memory: 128Mi
+  requests:
+    cpu: 100m
+    memory: 128Mi
