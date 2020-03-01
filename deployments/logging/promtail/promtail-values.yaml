@@ -3,6 +3,7 @@ fullnameOverride: promtail
 image:
   repository: grafana/promtail
   tag: v1.2.0-arm
+  pullPolicy: Always
 
 pipelineStages:
   - cri: {}
