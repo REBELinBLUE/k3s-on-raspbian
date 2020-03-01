@@ -19,7 +19,6 @@ ingress:
   hosts:
     - host: kubeview.cluster.rebelinblue.com
       paths: ["/"]
-
   tls:
     - hosts:
         - kubeview.cluster.rebelinblue.com

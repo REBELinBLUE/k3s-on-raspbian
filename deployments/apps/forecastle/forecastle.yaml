@@ -1,10 +1,24 @@
+apiVersion: helm.fluxcd.io/v1
+kind: HelmRelease
+metadata:
+  name: forecastle
+  namespace: apps
+  annotations:
+    fluxcd.io/automated: "false"
+spec:
+  releaseName: forecastle
+  chart:
+    git: git@github.com:stakater/Forecastle.git
+    path: deployments/kubernetes/chart/forecastle
+    ref: master
+  valuesFrom:
+    - externalSourceRef:
+        url: https://raw.githubusercontent.com/REBELinBLUE/k8s-on-hypriot/master/deployments/apps/forecastle/forecastle-values.yaml
 ---
-apiVersion: apiextensions.k8s.io/v1beta1
+apiVersion: apiextensions.k8s.io/v1
 kind: CustomResourceDefinition
 metadata:
   name: forecastleapps.forecastle.stakater.com
-  annotations:
-    "helm.sh/hook": crd-install
 spec:
   group: forecastle.stakater.com
   names:
@@ -13,196 +27,55 @@ spec:
     plural: forecastleapps
     singular: forecastleapp
   scope: Namespaced
-  subresources:
-    status: {}
-  validation:
-    openAPIV3Schema:
-      properties:
-        apiVersion:
-          description: 'APIVersion defines the versioned schema of this representation
-            of an object. Servers should convert recognized schemas to the latest
-            internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/api-conventions.md#resources'
-          type: string
-        kind:
-          description: 'Kind is a string value representing the REST resource this
-            object represents. Servers may infer this from the endpoint the client
-            submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/api-conventions.md#types-kinds'
-          type: string
-        metadata:
-          type: object
-        spec:
-          properties:
-            group:
-              type: string
-            icon:
-              type: string
-            instance:
-              type: string
-            name:
-              type: string
-            networkRestricted:
-              type: boolean
-            properties:
-              additionalProperties:
-                type: string
-              type: object
-            url:
-              type: string
-            urlFrom:
-              properties:
-                ingressRef:
-                  type: object
-                routeRef:
-                  type: object
-              type: object
-          required:
-          - name
-          - group
-          - icon
-          type: object
-        status:
-          type: object
-  version: v1alpha1
   versions:
-  - name: v1alpha1
-    served: true
-    storage: true
----
-kind: Deployment
-apiVersion: apps/v1
-metadata:
-  name: forecastle
-  namespace: apps
-  labels:
-    app: forecastle
-spec:
-  replicas: 1
-  revisionHistoryLimit: 2
-  selector:
-    matchLabels:
-      app: forecastle
-  template:
-    metadata:
-      labels:
-        app: forecastle
-    spec:
-      containers:
-      - name: forecastle
-        image: rebelinblue/forecastle:1.0.42
-        env:
-          - name: KUBERNETES_NAMESPACE
-            valueFrom:
-              fieldRef:
-                fieldPath: metadata.namespace
-        volumeMounts:
-          - name: forecastle-config
-            mountPath: /etc/forecastle
-      volumes:
-        - name: forecastle-config
-          configMap:
-            name: forecastle
-      serviceAccountName: forecastle
----
-apiVersion: v1
-kind: ServiceAccount
-metadata:
-  name: forecastle
-  namespace: apps
-  labels:
-    app: forecastle
----
-kind: ClusterRole
-apiVersion: rbac.authorization.k8s.io/v1
-metadata:
-  name: forecastle-cluster-ingress-role
-  namespace: apps
-  labels:
-    app: forecastle
-rules:
-  - apiGroups: ["", "extensions"]
-    resources: ["ingresses", "namespaces"]
-    verbs: ["get", "list"]
-  - apiGroups: ["forecastle.stakater.com"]
-    resources: ["*"]
-    verbs: ["*"]
----
-apiVersion: rbac.authorization.k8s.io/v1
-kind: ClusterRoleBinding
-metadata:
-  name: forecastle-cluster-ingress-role-binding
-  namespace: apps
-  labels:
-    app: forecastle
-roleRef:
-  apiGroup: rbac.authorization.k8s.io
-  kind: ClusterRole
-  name: forecastle-cluster-ingress-role
-subjects:
-  - kind: ServiceAccount
-    name: forecastle
-    namespace: apps
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: forecastle
-  namespace: apps
-  labels:
-    app: forecastle
-spec:
-  ports:
-    - name: http
-      port: 80
-      protocol: TCP
-      targetPort: 3000
-  selector:
-    app: forecastle
----
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: forecastle
-  namespace: apps
-  labels:
-    app: forecastle
-data:
-  config.yaml: |-
-    customApps: {}
-    headerBackground: null
-    headerForeground: null
-    instanceName: null
-    crdEnabled: true
-    namespaceSelector:
-      matchNames:
-        - logging
-        - media
-        - monitoring
-        - kubernetes-dashboard
-        - apps
-        - infra
-        - kube-system
-        - vault
-    title: Launch Pad
----
-apiVersion: networking.k8s.io/v1beta1
-kind: Ingress
-metadata:
-  name: forecastle
-  namespace: apps
-  annotations:
-    kubernetes.io/ingress.class: traefik
-    kubernetes.io/tls-acme: "true"
-    cert-manager.io/cluster-issuer: letsencrypt-prod
-spec:
-  rules:
-    - host: launchpad.cluster.rebelinblue.com
-      http:
-        paths:
-          - path: /
-            backend:
-              serviceName: forecastle
-              servicePort: 80
-  tls:
-    - hosts:
-        - launchpad.cluster.rebelinblue.com
-      secretName: forecastle-tls
+    - name: v1alpha1
+      served: true
+      storage: true
+      schema:
+        openAPIV3Schema:
+          type: object
+          properties:
+            apiVersion:
+              description: 'APIVersion defines the versioned schema of this representation
+                of an object. Servers should convert recognized schemas to the latest
+                internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/api-conventions.md#resources'
+              type: string
+            kind:
+              description: 'Kind is a string value representing the REST resource this
+                object represents. Servers may infer this from the endpoint the client
+                submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/api-conventions.md#types-kinds'
+              type: string
+            metadata:
+              type: object
+            spec:
+              properties:
+                group:
+                  type: string
+                icon:
+                  type: string
+                instance:
+                  type: string
+                name:
+                  type: string
+                networkRestricted:
+                  type: boolean
+                properties:
+                  additionalProperties:
+                    type: string
+                  type: object
+                url:
+                  type: string
+                urlFrom:
+                  properties:
+                    ingressRef:
+                      type: object
+                    routeRef:
+                      type: object
+                  type: object
+              required:
+                - name
+                - group
+                - icon
+              type: object
+            status:
+              type: object

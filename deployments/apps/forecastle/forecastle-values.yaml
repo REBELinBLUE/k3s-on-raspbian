@@ -1,0 +1,48 @@
+nameOverride: forecastle
+
+forecastle:
+  createCustomResource: false
+
+  labels: {}
+
+  namespace: apps
+
+  image:
+    name: rebelinblue/forecastle
+    tag: 1.0.42
+
+  deployment:
+    replicas: 1
+
+  config:
+    customApps: {}
+    headerBackground: null
+    headerForeground: null
+    instanceName: null
+    crdEnabled: true
+    namespaceSelector:
+      matchNames:
+        - logging
+        - media
+        - monitoring
+        - kubernetes-dashboard
+        - apps
+        - infra
+        - kube-system
+        - vault
+    title: Launch Pad
+
+  ingress:
+    enabled: true
+    annotations:
+      kubernetes.io/ingress.class: traefik
+      kubernetes.io/tls-acme: "true"
+      cert-manager.io/cluster-issuer: letsencrypt-prod
+    hosts:
+      - host: launchpad.cluster.rebelinblue.com
+        paths:
+          - /
+    tls:
+      - hosts:
+          - launchpad.cluster.rebelinblue.com
+        secretName: forecastle-tls
