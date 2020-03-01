@@ -67,7 +67,7 @@ spec:
           imagePullPolicy: Always
           args:
             - --config.file=/etc/prometheus/prometheus.yaml
-            - --storage.tsdb.retention.time=360h
+            - --storage.tsdb.retention.time=120h
             - --storage.tsdb.path=/prometheus/
             - --storage.tsdb.no-lockfile
             - --web.enable-lifecycle
