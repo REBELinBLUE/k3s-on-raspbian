@@ -11,8 +11,10 @@ RUN apk add --no-cache openssh-client 'git>=2.12.0' 'gnutls>=3.6.7' gnupg gawk s
 
 WORKDIR /build
 
-RUN git clone https://github.com/benc-uk/kubeview.git . && \
-    git checkout master
+# RUN git clone https://github.com/benc-uk/kubeview.git . && \
+#     git checkout master
+RUN git clone https://github.com/REBELinBLUE/kubeview.git . && \
+    git checkout pv
 
 # Install all the Vue.js dev tools & CLI, and our app dependencies
 RUN cp web/client/package*.json ./ && \

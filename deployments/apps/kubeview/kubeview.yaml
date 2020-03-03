@@ -10,7 +10,7 @@ spec:
   chart:
     git: git@github.com:REBELinBLUE/kubeview.git
     path: deployments/helm/kubeview
-    ref: configmaps
+    ref: pv
   valuesFrom:
     - externalSourceRef:
         url: https://raw.githubusercontent.com/REBELinBLUE/k8s-on-hypriot/master/deployments/apps/kubeview/kubeview-values.yaml

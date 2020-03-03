@@ -103,8 +103,8 @@ docker push rebelinblue/helm-operator
 cd kubeview
 
 docker build -f Dockerfile \
-    --build-arg KUBEVIEW_VERSION="0.1.9" \
-    -t rebelinblue/kubeview:0.1.9 \
+    --build-arg KUBEVIEW_VERSION="0.1.11" \
+    -t rebelinblue/kubeview:0.1.11 \
     -t rebelinblue/kubeview:latest .
 
 docker push rebelinblue/kubeview
@@ -204,7 +204,7 @@ docker push rebelinblue/velero-fsfreeze
 ```
 
 ## Velero AWS Plug-in
-   
+
 ```bash
 cd velero-plugin-for-aws
 
