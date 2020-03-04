@@ -2,7 +2,7 @@ replicaCount: 1
 
 image:
   repository: rebelinblue/kubeview
-  tag: 0.1.11
+  tag: 0.1.12
   pullPolicy: IfNotPresent
 
 nameOverride: kubeview
