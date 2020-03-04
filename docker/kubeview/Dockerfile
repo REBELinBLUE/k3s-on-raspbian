@@ -14,7 +14,7 @@ WORKDIR /build
 # RUN git clone https://github.com/benc-uk/kubeview.git . && \
 #     git checkout master
 RUN git clone https://github.com/REBELinBLUE/kubeview.git . && \
-    git checkout pv
+    git checkout endpoints
 
 # Install all the Vue.js dev tools & CLI, and our app dependencies
 RUN cp web/client/package*.json ./ && \
