@@ -21,7 +21,7 @@ data:
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: kuard-claim
+  name: kuard
   namespace: test
   labels:
     app: kuard
@@ -162,7 +162,7 @@ spec:
                 path: annotations
         - name: kuard-data
           persistentVolumeClaim:
-            claimName: kuard-claim
+            claimName: kuard
         - name: config-volume
           configMap:
             name: kuard-config

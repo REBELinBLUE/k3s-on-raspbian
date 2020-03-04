@@ -78,7 +78,7 @@ data:
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: alertmanager-claim
+  name: alertmanager
   namespace: monitoring
 spec:
   storageClassName: nfs-hdd
@@ -165,7 +165,7 @@ spec:
           emptyDir: {}
         - name: alertmanager
           persistentVolumeClaim:
-            claimName: alertmanager-claim
+            claimName: alertmanager
         - name: env
           emptyDir: {}
         - name: podinfo

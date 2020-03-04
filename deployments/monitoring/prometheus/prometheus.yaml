@@ -20,7 +20,7 @@ roleRef:
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: prometheus-claim
+  name: prometheus
   namespace: monitoring
 spec:
   storageClassName: local-path
@@ -94,7 +94,7 @@ spec:
             name: prometheus-config
         - name: prometheus-storage-volume
           persistentVolumeClaim:
-            claimName: prometheus-claim
+            claimName: prometheus
 ---
 apiVersion: v1
 kind: Service
