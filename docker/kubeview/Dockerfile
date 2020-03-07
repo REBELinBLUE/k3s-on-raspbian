@@ -11,8 +11,6 @@ RUN apk add --no-cache openssh-client 'git>=2.12.0' 'gnutls>=3.6.7' gnupg gawk s
 
 WORKDIR /build
 
-# RUN git clone https://github.com/benc-uk/kubeview.git . && \
-#     git checkout master
 RUN git clone https://github.com/REBELinBLUE/kubeview.git . && \
     git checkout master
 
@@ -31,7 +29,7 @@ RUN npm run build
 
 FROM golang:1.12-alpine as go-build
 
-ARG goPackage="github.com/benc-uk/kubeview/cmd/server"
+ARG goPackage="github.com/rebelinblue/kubeview/cmd/server"
 ARG version="${KUBEVIEW_VERSION}"
 ARG buildInfo="Local Docker build"
 
