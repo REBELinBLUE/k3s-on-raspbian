@@ -1,7 +1,7 @@
 replicaCount: 1
 
 image:
-  repository: rebelinblue/kubeview
+  repository: rebelinblue/kubeview-arm
   tag: latest
   pullPolicy: Always
 

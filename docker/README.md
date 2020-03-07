@@ -104,10 +104,10 @@ cd kubeview
 
 docker build -f Dockerfile \
     --build-arg KUBEVIEW_VERSION="0.1.12" \
-    -t rebelinblue/kubeview:0.1.12 \
-    -t rebelinblue/kubeview:latest .
+    -t rebelinblue/kubeview-arm:0.1.12 \
+    -t rebelinblue/kubeview-arm:latest .
 
-docker push rebelinblue/kubeview
+docker push rebelinblue/kubeview-arm
 ```
 
 ## Kured
