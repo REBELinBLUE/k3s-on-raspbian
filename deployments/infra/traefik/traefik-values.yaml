@@ -9,6 +9,9 @@ ssl:
   permanentRedirect: true
   generateTLS: false
 
+accessLogs:
+  enabled: true
+
 tolerations:
   - effect: NoSchedule
     key: node-role.kubernetes.io/master
@@ -37,7 +40,7 @@ rbac:
 
 kubernetes:
   ingressEndpoint:
-    useDefaultPublishedService: true
+    ip: 192.168.1.18
 
 dashboard:
   enabled: true
