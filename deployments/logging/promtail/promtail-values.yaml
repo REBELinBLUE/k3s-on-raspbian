@@ -13,6 +13,9 @@ loki:
   servicePort: 3100
   serviceScheme: http
 
+serviceMonitor:
+  enabled: true
+
 volumes:
   - name: containers
     hostPath:

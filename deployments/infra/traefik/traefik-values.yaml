@@ -23,6 +23,8 @@ nodeSelector:
 metrics:
   prometheus:
     enabled: true
+  serviceMonitor:
+    enabled: true
 
 cpuRequest: 25m
 memoryRequest: 128Mi

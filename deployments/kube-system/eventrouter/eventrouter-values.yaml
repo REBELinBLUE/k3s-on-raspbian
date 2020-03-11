@@ -3,3 +3,5 @@ image:
   tag: 0.3
 
 sink: stdout
+
+enablePrometheus: true

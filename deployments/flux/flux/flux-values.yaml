@@ -24,6 +24,8 @@ additionalArgs:
 
 prometheus:
   enabled: true
+  serviceMonitor:
+    create: true
 
 syncGarbageCollection:
   enabled: true

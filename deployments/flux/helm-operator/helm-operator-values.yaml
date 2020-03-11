@@ -14,6 +14,8 @@ statusUpdateInterval: "5m"
 
 prometheus:
   enabled: true
+  serviceMonitor:
+    create: true
 
 helm:
   versions: "v3"

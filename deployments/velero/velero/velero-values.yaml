@@ -70,6 +70,10 @@ extraVolumes:
 credentials:
   useSecret: false
 
+metrics:
+  serviceMonitor:
+    enabled: true
+
 configMaps:
   aws:
     data:
