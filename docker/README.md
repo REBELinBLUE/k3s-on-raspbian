@@ -103,8 +103,8 @@ docker push rebelinblue/helm-operator
 cd kubeview
 
 docker build -f Dockerfile \
-    --build-arg KUBEVIEW_VERSION="0.1.12" \
-    -t rebelinblue/kubeview-arm:0.1.12 \
+    --build-arg KUBEVIEW_VERSION="0.1.13" \
+    -t rebelinblue/kubeview-arm:0.1.13 \
     -t rebelinblue/kubeview-arm:latest .
 
 docker push rebelinblue/kubeview-arm
