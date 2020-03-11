@@ -1,8 +1,15 @@
-apiVersion: extensions/v1beta1
+apiVersion: networking.k8s.io/v1beta1
 kind: Ingress
 metadata:
   name: alertmanager-main
   namespace: monitoring
+  annotations:
+    kubernetes.io/ingress.class: traefik
+    kubernetes.io/tls-acme: "true"
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+    ingress.kubernetes.io/auth-type: forward
+    ingress.kubernetes.io/auth-url: http://traefik-forward-auth.infra.svc
+    ingress.kubernetes.io/auth-response-headers: X-Forwarded-User
 spec:
   rules:
   - host: alertmanager.cluster.rebelinblue.com
@@ -13,5 +20,6 @@ spec:
           servicePort: web
         path: /
   tls:
-  - hosts:
-    - alertmanager.cluster.rebelinblue.com
+    - hosts:
+        - alertmanager.cluster.rebelinblue.com
+      secretName: alertmanager-tls
