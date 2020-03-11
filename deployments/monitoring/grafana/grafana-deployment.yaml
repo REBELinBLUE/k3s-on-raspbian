@@ -140,8 +140,8 @@ spec:
         persistentVolumeClaim:
           claimName: grafana-storage
       - name: grafana-datasources
-        secret:
-          secretName: grafana-datasources
+        configMap:
+          name: grafana-datasources
       - configMap:
           name: grafana-dashboards
         name: grafana-dashboards
@@ -230,5 +230,5 @@ spec:
           name: grafana-dashboard-workload-total
         name: grafana-dashboard-workload-total
       - name: grafana-config
-        secret:
-          secretName: grafana-config
+        configMap:
+          name: grafana-config
