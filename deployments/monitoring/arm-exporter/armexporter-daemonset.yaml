@@ -50,5 +50,5 @@ spec:
             cpu: 10m
             memory: 20Mi
       nodeSelector:
-        beta.kubernetes.io/arch: arm64
+        beta.kubernetes.io/arch: arm
       serviceAccountName: arm-exporter
