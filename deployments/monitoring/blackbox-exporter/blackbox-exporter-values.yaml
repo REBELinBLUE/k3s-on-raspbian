@@ -42,6 +42,5 @@ ingress:
         - blackbox.cluster.rebelinblue.com
       secretName: blackbox-exporter-tls
 
-service:
-  annotations:
-    prometheus.io/scrape: "true"
+serviceMonitor:
+  enabled: true
