@@ -1,0 +1,17 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: grafana
+  namespace: monitoring
+spec:
+  rules:
+  - host: grafana.cluster.rebelinblue.com
+    http:
+      paths:
+      - backend:
+          serviceName: grafana
+          servicePort: http
+        path: /
+  tls:
+  - hosts:
+    - grafana.cluster.rebelinblue.com

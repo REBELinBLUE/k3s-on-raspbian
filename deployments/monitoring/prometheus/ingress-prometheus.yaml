@@ -1,0 +1,17 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: prometheus-k8s
+  namespace: monitoring
+spec:
+  rules:
+  - host: prometheus.cluster.rebelinblue.com
+    http:
+      paths:
+      - backend:
+          serviceName: prometheus-k8s
+          servicePort: web
+        path: /
+  tls:
+  - hosts:
+    - prometheus.cluster.rebelinblue.com
