@@ -20,6 +20,9 @@ data:
       receiver: default
       routes:
         - match:
+            alertname: Watchdog
+          receiver: null
+        - match:
             severity: critical
           receiver: critical
           continue: true
