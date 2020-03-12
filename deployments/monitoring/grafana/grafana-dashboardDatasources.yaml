@@ -7,7 +7,7 @@ data:
             {
                 "access": "proxy",
                 "editable": false,
-                "name": "prometheus",
+                "name": "Prometheus",
                 "orgId": 1,
                 "type": "prometheus",
                 "url": "http://prometheus-k8s.monitoring.svc:9090",
