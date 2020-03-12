@@ -43,4 +43,4 @@ ingress:
       secretName: blackbox-exporter-tls
 
 serviceMonitor:
-  enabled: true
+  enabled: false
