@@ -187,7 +187,7 @@ spec:
   externalUrl: https://prometheus.cluster.rebelinblue.com
   nodeSelector:
     kubernetes.io/os: linux
-    beta.kubernetes.io/arch: arm
+    kubernetes.io/arch: arm
     node-role.kubernetes.io/master: "true"
   podMonitorSelector: {}
   replicas: 1
