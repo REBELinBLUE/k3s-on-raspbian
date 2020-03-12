@@ -1,3 +1,41 @@
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: arm-exporter
+  namespace: monitoring
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: arm-exporter
+rules:
+  - apiGroups:
+      - authentication.k8s.io
+    resources:
+      - tokenreviews
+    verbs:
+      - create
+  - apiGroups:
+      - authorization.k8s.io
+    resources:
+      - subjectaccessreviews
+    verbs:
+      - create
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: arm-exporter
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: arm-exporter
+subjects:
+  - kind: ServiceAccount
+    name: arm-exporter
+    namespace: monitoring
+---
 apiVersion: apps/v1
 kind: DaemonSet
 metadata:
@@ -55,3 +93,42 @@ spec:
         - effect: NoSchedule
           key: node-role.kubernetes.io/master
       serviceAccountName: arm-exporter
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    k8s-app: arm-exporter
+  name: arm-exporter
+  namespace: monitoring
+spec:
+  clusterIP: None
+  ports:
+    - name: https
+      port: 9243
+      targetPort: https
+  selector:
+    k8s-app: arm-exporter
+---
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  labels:
+    app: arm-exporter
+  name: arm-exporter
+  namespace: monitoring
+spec:
+  endpoints:
+    - bearerTokenFile: /var/run/secrets/kubernetes.io/serviceaccount/token
+      interval: 30s
+      port: https
+      scheme: https
+      tlsConfig:
+        insecureSkipVerify: true
+  jobLabel: arm-exporter-exporter
+  namespaceSelector:
+    matchNames:
+      - monitoring
+  selector:
+    matchLabels:
+      k8s-app: arm-exporter
