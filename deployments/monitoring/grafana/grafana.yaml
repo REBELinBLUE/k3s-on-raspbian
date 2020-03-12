@@ -1,3 +1,44 @@
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: grafana
+  namespace: monitoring
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: grafana-storage
+  namespace: monitoring
+spec:
+  storageClassName: nfs-hdd
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 2Gi
+---
+apiVersion: v1
+data:
+  grafana.ini: |-
+    [auth.anonymous]
+    enabled = true
+    org_role = Editor
+    [auth.basic]
+    enabled = false
+    [session]
+    provider = memory
+    [alerting]
+    enabled = false
+    [users]
+    allow_org_create = false
+    allow_sign_up = false
+    [log]
+    mode = console
+kind: ConfigMap
+metadata:
+  name: grafana-config
+  namespace: monitoring
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -232,3 +273,57 @@ spec:
       - name: grafana-config
         configMap:
           name: grafana-config
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: grafana
+  name: grafana
+  namespace: monitoring
+spec:
+  ports:
+    - name: http
+      port: 3000
+      targetPort: http
+  selector:
+    app: grafana
+---
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: grafana
+  namespace: monitoring
+  annotations:
+    kubernetes.io/ingress.class: traefik
+    kubernetes.io/tls-acme: "true"
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+    ingress.kubernetes.io/auth-type: forward
+    ingress.kubernetes.io/auth-url: http://traefik-forward-auth.infra.svc
+    ingress.kubernetes.io/auth-response-headers: X-Forwarded-User
+spec:
+  rules:
+    - host: grafana.cluster.rebelinblue.com
+      http:
+        paths:
+          - backend:
+              serviceName: grafana
+              servicePort: http
+            path: /
+  tls:
+    - hosts:
+        - grafana.cluster.rebelinblue.com
+      secretName: grafana-tls
+---
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: grafana
+  namespace: monitoring
+spec:
+  endpoints:
+    - interval: 15s
+      port: http
+  selector:
+    matchLabels:
+      app: grafana
