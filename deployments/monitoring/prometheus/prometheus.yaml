@@ -187,6 +187,8 @@ spec:
   externalUrl: https://prometheus.cluster.rebelinblue.com
   nodeSelector:
     kubernetes.io/os: linux
+    beta.kubernetes.io/arch: arm
+    node-role.kubernetes.io/master: "true"
   podMonitorSelector: {}
   replicas: 1
   resources:
@@ -209,11 +211,15 @@ spec:
       apiVersion: v1
       kind: PersistentVolumeClaim
       spec:
+        storageClassName: local-path
         accessModes:
         - ReadWriteOnce
         resources:
           requests:
             storage: 20Gi
+  tolerations:
+    - effect: NoSchedule
+      key: node-role.kubernetes.io/master
   version: v2.11.1
 ---
 apiVersion: v1
