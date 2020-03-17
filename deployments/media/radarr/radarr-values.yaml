@@ -9,6 +9,7 @@ env:
 image:
   repository: linuxserver/radarr
   tag: preview
+  pullPolicy: Always
 
 service:
   type: ClusterIP

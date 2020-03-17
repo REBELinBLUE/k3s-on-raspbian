@@ -14,6 +14,7 @@ service:
 image:
   repository: linuxserver/sonarr
   tag: preview
+  pullPolicy: Always
 
 ingress:
   enabled: true

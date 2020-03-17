@@ -45,7 +45,7 @@ spec:
             - name: PGID
               value: "1000"
           image: linuxserver/plex:arm32v7-latest
-          imagePullPolicy: IfNotPresent
+          imagePullPolicy: Always
 #          livenessProbe:
 #            failureThreshold: 3
 #            httpGet:
