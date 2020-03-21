@@ -339,7 +339,7 @@ spec:
   resources:
     requests:
       memory: 400Mi
-  retention: 15d
+  retention: 7d
   ruleSelector:
     matchLabels:
       prometheus: k8s
@@ -361,7 +361,7 @@ spec:
         - ReadWriteOnce
         resources:
           requests:
-            storage: 20Gi
+            storage: 100Gi
   tolerations:
     - effect: NoSchedule
       key: node-role.kubernetes.io/master
