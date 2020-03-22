@@ -10,9 +10,6 @@
     - **kured** - Doesn't support initContainer
 - **kubernetes-dashboard**
     - **dashboard** - Chart is for v1
-- **media**
-    - **plex**
-    - **tautulli**
 - **monitoring**
     - **alertmanager** - Doesn't support initContainer
     - **prometheus**
