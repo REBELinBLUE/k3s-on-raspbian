@@ -2,7 +2,7 @@ fullnameOverride: loki
 
 image:
   repository: grafana/loki
-  tag: v1.3.0-arm
+  tag: v1.4.1-arm
   pullPolicy: Always
 
 persistence:
