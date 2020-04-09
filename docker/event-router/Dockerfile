@@ -27,6 +27,7 @@ WORKDIR /app
 RUN apk add --no-cache ca-certificates
 
 COPY --from=build /go/src/github.com/heptiolabs/eventrouter/eventrouter /app/eventrouter
+
 RUN chmod +x /app/eventrouter
 
 USER nobody:nobody

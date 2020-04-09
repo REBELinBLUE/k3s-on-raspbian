@@ -137,6 +137,19 @@ docker build -f Dockerfile \
 docker push rebelinblue/linode-dynamic-dns
 ```
 
+## Popeye
+
+```bash
+cd popeye
+
+docker build -f Dockerfile \
+    --build-arg POPEYE_VERSION="0.8.0" \
+    -t rebelinblue/popeye:v0.8.0 \
+    -t rebelinblue/popeye:latest .
+
+docker push rebelinblue/popeye
+```
+
 ## Traefik Forward Authentication
 
 ```bash
@@ -164,7 +177,6 @@ docker push rebelinblue/vault
 ```
 ## Vault Consumer
 
-
 ```bash
 cd vault-consumer
 
@@ -189,7 +201,6 @@ docker build -f Dockerfile \
 
 docker push rebelinblue/velero
 ```
-
 
 ## Velero FS Freeze
 
