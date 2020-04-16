@@ -127,8 +127,8 @@ spec:
         - --kubelet-service=kube-system/kubelet
         - --logtostderr=true
         - --config-reloader-image=carlosedp/configmap-reload:v0.2.2
-        - --prometheus-config-reloader=carlosedp/prometheus-config-reloader:v0.31.1
-        image: carlosedp/prometheus-operator:v0.31.1
+        - --prometheus-config-reloader=carlosedp/prometheus-config-reloader:v0.37.0
+        image: carlosedp/prometheus-operator:v0.37.0
         name: prometheus-operator
         ports:
         - containerPort: 8080

@@ -2,18 +2,18 @@ fullnameOverride: cert-manager
 
 image:
   repository: quay.io/jetstack/cert-manager-controller-arm
-  tag: v0.14.0
+  tag: v0.14.2
 
 cainjector:
   image:
     repository: quay.io/jetstack/cert-manager-cainjector-arm
-    tag: v0.14.0
+    tag: v0.14.2
 
 webhook:
   enabled: true
   image:
     repository: quay.io/jetstack/cert-manager-webhook-arm
-    tag: v0.14.0
+    tag: v0.14.2
 
 prometheus:
   enabled: true

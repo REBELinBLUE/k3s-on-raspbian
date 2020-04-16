@@ -2,7 +2,7 @@ fullnameOverride: velero
 
 image:
   repository: rebelinblue/velero
-  tag: 1.2.0
+  tag: 1.3.2
 
 podAnnotations:
   SECRET_MINIO_ACCESS_KEY: /apps/shared/minio/accesskey
@@ -41,7 +41,7 @@ initContainers:
       - mountPath: /tmpfs
         name: podinfo
   - name: velero-plugin-for-aws
-    image: rebelinblue/velero-plugin-for-aws:1.0.0
+    image: rebelinblue/velero-plugin-for-aws:1.0.1
     volumeMounts:
       - mountPath: /target
         name: plugins

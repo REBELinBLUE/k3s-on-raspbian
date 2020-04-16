@@ -6,7 +6,7 @@ git:
 
 image:
   repository: rebelinblue/flux
-  tag: 1.17.1
+  tag: 1.19.0
   pullPolicy: Always
 
 registry:

@@ -2,7 +2,7 @@ fullnameOverride: promtail
 
 image:
   repository: grafana/promtail
-  tag: v1.2.0-arm
+  tag: 1.4.1-arm
   pullPolicy: Always
 
 pipelineStages:

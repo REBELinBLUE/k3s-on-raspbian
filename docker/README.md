@@ -21,11 +21,11 @@ docker push rebelinblue/eventrouter
 cd flux
 
 docker build -f Dockerfile \
-    --build-arg FLUX_VERSION="1.17.1" \
-    --build-arg KUBECTL_VERSION="v1.14.7" \
+    --build-arg FLUX_VERSION="1.19.0" \
+    --build-arg KUBECTL_VERSION="v1.17.4" \
     --build-arg KUSTOMIZE_VERSION="v3.2.0" \
     --build-arg SOPS_VERSION="v3.5.0" \
-    -t rebelinblue/flux:1.17.1 \
+    -t rebelinblue/flux:1.19.0 \
     -t rebelinblue/flux:latest .
 
 docker push rebelinblue/flux
@@ -87,11 +87,11 @@ docker push rebelinblue/forecastle
 cd helm-operator
 
 docker build -f Dockerfile \
-    --build-arg KUBECTL_VERSION="v1.15.7" \
-    --build-arg HELM_VERSION="v2.16.1" \
-    --build-arg HELM3_VERSION="v3.1.1" \
-    --build-arg VERSION="1.0.0-rc9" \
-    -t rebelinblue/helm-operator:1.0.0-rc9 \
+    --build-arg KUBECTL_VERSION="v1.17.4" \
+    --build-arg HELM_VERSION="v2.16.3" \
+    --build-arg HELM3_VERSION="v3.1.2" \
+    --build-arg VERSION="1.0.1" \
+    -t rebelinblue/helm-operator:1.0.1 \
     -t rebelinblue/helm-operator:latest .
 
 docker push rebelinblue/helm-operator
@@ -169,8 +169,8 @@ docker push rebelinblue/traefik-forward-auth
 cd vault
 
 docker build -f Dockerfile \
-    --build-arg VAULT_VERSION="1.3.2" \
-    -t rebelinblue/vault:1.3.2 \
+    --build-arg VAULT_VERSION="1.4.0" \
+    -t rebelinblue/vault:1.4.0 \
     -t rebelinblue/vault:latest .
 
 docker push rebelinblue/vault
@@ -195,8 +195,8 @@ cd velero
 
 docker build -f Dockerfile \
     --build-arg RESTIC_VERSION="0.9.5" \
-    --build-arg VELERO_VERSION="v1.2.0" \
-    -t rebelinblue/velero:1.2.0 \
+    --build-arg VELERO_VERSION="v1.3.2" \
+    -t rebelinblue/velero:1.3.2 \
     -t rebelinblue/velero:latest .
 
 docker push rebelinblue/velero
@@ -220,8 +220,8 @@ docker push rebelinblue/velero-fsfreeze
 cd velero-plugin-for-aws
 
 docker build -f Dockerfile \
-    --build-arg VELERO_AWS_PLUGIN_VERSION="v1.0.0" \
-    -t rebelinblue/velero-plugin-for-aws:1.0.0 \
+    --build-arg VELERO_AWS_PLUGIN_VERSION="v1.0.1" \
+    -t rebelinblue/velero-plugin-for-aws:1.0.1 \
     -t rebelinblue/velero-plugin-for-aws:latest .
 
 docker push rebelinblue/velero-plugin-for-aws
