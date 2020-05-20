@@ -143,8 +143,8 @@ docker push rebelinblue/linode-dynamic-dns
 cd popeye
 
 docker build -f Dockerfile \
-    --build-arg POPEYE_VERSION="0.8.0" \
-    -t rebelinblue/popeye:v0.8.0 \
+    --build-arg POPEYE_VERSION="0.8.3" \
+    -t rebelinblue/popeye:v0.8.3 \
     -t rebelinblue/popeye:latest .
 
 docker push rebelinblue/popeye
