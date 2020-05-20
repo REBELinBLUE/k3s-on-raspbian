@@ -49,8 +49,7 @@ Thanks to the following pages
 * 4 x [SanDisk Ultra 16 GB microSDHC Memory Card](https://www.amazon.co.uk/gp/product/B073K14CVB)
 * [TP-Link TL-SF1005D Desktop Ethernet Switch](https://www.amazon.co.uk/gp/product/B0766D8HZ3)
 * [BERLS USB 2.0 to DC Power Cord: 5.5 x 2.1mm Barrel Jack Connector](https://www.amazon.co.uk/gp/product/B07GRMJZ3M)
-* [MaGeek 1ft Micro USB 2.0 A Male to Micro B Cables](https://www.amazon.co.uk/gp/product/B00WMAQKS2)
-* 4 x [Raspberry Pi USB-C adapter](https://thepihut.com/products/usb-b-to-usb-c-adapter?variant=20064105988158)
+* [MaGeek 1ft USB-C to USB 3.0 Cables](https://www.amazon.co.uk/gp/product/B074XQV6F4)
 * [Jun_Electronic 4 Layers Stackable Case](https://www.amazon.co.uk/gp/product/B07F6Y1MJ6)
 * A USB hard drive attached to the master
 
