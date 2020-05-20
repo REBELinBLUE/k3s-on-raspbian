@@ -365,7 +365,7 @@ spec:
   tolerations:
     - effect: NoSchedule
       key: node-role.kubernetes.io/master
-  version: v2.17.1
+  version: v2.18.1
 ---
 apiVersion: v1
 kind: Service
