@@ -2,7 +2,7 @@ replicaCount: 1
 
 image:
   repository: rebelinblue/kubeview-arm
-  tag: latest
+  tag: 0.1.14
   pullPolicy: Always
 
 nameOverride: kubeview
