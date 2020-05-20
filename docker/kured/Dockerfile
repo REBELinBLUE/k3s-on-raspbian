@@ -28,7 +28,7 @@ RUN go build -o kured ./cmd/kured/
 # Deploy
 #
 
-FROM arm32v6/alpine:3.10
+FROM arm32v6/alpine:3.11.3
 
 RUN apk add --no-cache bash ca-certificates
 
