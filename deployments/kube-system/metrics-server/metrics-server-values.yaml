@@ -13,4 +13,5 @@ service:
 
 podAnnotations:
   scheduler.alpha.kubernetes.io/critical-pod: ''
-  priorityClassName: system-node-critical
+
+priorityClassName: system-node-critical

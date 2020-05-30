@@ -10,7 +10,7 @@ spec:
   chart:
     repository: https://kubernetes-charts.storage.googleapis.com/
     name: metrics-server
-    version: 2.9.0
+    version: 2.11.1
   valuesFrom:
     - externalSourceRef:
         url: https://raw.githubusercontent.com/REBELinBLUE/k3s-on-raspbian/master/deployments/kube-system/metrics-server/metrics-server-values.yaml
