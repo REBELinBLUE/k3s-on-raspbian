@@ -20,4 +20,4 @@ prometheus:
   servicemonitor:
     enabled: true
 
-installCRDs: true
+installCRDs: false
