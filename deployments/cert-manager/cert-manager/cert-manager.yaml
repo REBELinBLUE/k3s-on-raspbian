@@ -13,4 +13,4 @@ spec:
     version: v0.15.0
 valuesFrom:
   - externalSourceRef:
-      url: https://raw.githubusercontent.com/REBELinBLUE/k8s-on-hypriot/master/deployments/cert-manager/cert-manager/cert-manager-values.yaml
+      url: https://raw.githubusercontent.com/REBELinBLUE/k3s-on-raspbian/master/deployments/cert-manager/cert-manager/cert-manager-values.yaml

@@ -1,4 +1,4 @@
-# Kubernetes on Hypriot
+# Kubernetes on Raspbian
 
 Build a [Kubernetes](https://kubernetes.io/) ([k3s](https://github.com/rancher/k3s)) cluster with RPis and utilize [GitOps](https://www.weave.works/technologies/gitops/) for managing cluster state.
 
@@ -24,7 +24,7 @@ Thanks to the following pages
 ├── ./setup
 │   │   # Scripts for setting things up
 │   ├── ./bin
-│   │   # Config for Hypriot when flashing the SD card
+│   │   # Config for RPI
 │   └─ ./nodes
 │   # Docker builds for ARM devices
 └── ./docker

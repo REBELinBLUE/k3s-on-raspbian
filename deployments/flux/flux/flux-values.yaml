@@ -1,5 +1,5 @@
 git:
-  url: "git@github.com:rebelinblue/k8s-on-hypriot.git"
+  url: "git@github.com:rebelinblue/k3s-on-raspbian.git"
   branch: master
   path: deployments
   readonly: true

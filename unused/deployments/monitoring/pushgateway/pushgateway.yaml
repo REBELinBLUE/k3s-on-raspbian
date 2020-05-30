@@ -13,4 +13,4 @@ spec:
     version: 1.2.10
   valuesFrom:
     - externalSourceRef:
-        url: https://raw.githubusercontent.com/REBELinBLUE/k8s-on-hypriot/master/deployments/monitoring/pushgateway/pushgateway-values.yaml
+        url: https://raw.githubusercontent.com/REBELinBLUE/k3s-on-raspbian/master/deployments/monitoring/pushgateway/pushgateway-values.yaml

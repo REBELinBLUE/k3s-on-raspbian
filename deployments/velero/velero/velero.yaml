@@ -13,4 +13,4 @@ spec:
     version: 2.7.5
   valuesFrom:
     - externalSourceRef:
-        url: https://raw.githubusercontent.com/REBELinBLUE/k8s-on-hypriot/master/deployments/velero/velero/velero-values.yaml
+        url: https://raw.githubusercontent.com/REBELinBLUE/k3s-on-raspbian/master/deployments/velero/velero/velero-values.yaml

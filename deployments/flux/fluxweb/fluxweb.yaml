@@ -13,4 +13,4 @@ spec:
     ref: master
   valuesFrom:
     - externalSourceRef:
-        url: https://raw.githubusercontent.com/REBELinBLUE/k8s-on-hypriot/master/deployments/flux/fluxweb/fluxweb-values.yaml
+        url: https://raw.githubusercontent.com/REBELinBLUE/k3s-on-raspbian/master/deployments/flux/fluxweb/fluxweb-values.yaml

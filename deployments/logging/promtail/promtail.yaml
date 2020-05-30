@@ -13,4 +13,4 @@ spec:
     version: 0.23.0
   valuesFrom:
     - externalSourceRef:
-        url: https://raw.githubusercontent.com/REBELinBLUE/k8s-on-hypriot/master/deployments/logging/promtail/promtail-values.yaml
+        url: https://raw.githubusercontent.com/REBELinBLUE/k3s-on-raspbian/master/deployments/logging/promtail/promtail-values.yaml

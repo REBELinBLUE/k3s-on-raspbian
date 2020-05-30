@@ -13,7 +13,7 @@ spec:
     ref: master
   valuesFrom:
     - externalSourceRef:
-        url: https://raw.githubusercontent.com/REBELinBLUE/k8s-on-hypriot/master/deployments/apps/kubeview/kubeview-values.yaml
+        url: https://raw.githubusercontent.com/REBELinBLUE/k3s-on-raspbian/master/deployments/apps/kubeview/kubeview-values.yaml
 ---
 apiVersion: networking.k8s.io/v1beta1
 kind: Ingress

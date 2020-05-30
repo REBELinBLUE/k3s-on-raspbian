@@ -70,7 +70,7 @@ spec:
             - name: SLACK_ICON_EMOJI
               value: ":heart:"
             - name: GITHUB_URL
-              value: "https://github.com/REBELinBLUE/k8s-on-hypriot/"
+              value: "https://github.com/REBELinBLUE/k3s-on-raspbian/"
             - name: LISTEN_ADDRESS
               value: ":3032"
           volumeMounts:

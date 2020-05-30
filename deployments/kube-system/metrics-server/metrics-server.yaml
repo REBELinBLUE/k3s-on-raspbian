@@ -13,4 +13,4 @@ spec:
     version: 2.9.0
   valuesFrom:
     - externalSourceRef:
-        url: https://raw.githubusercontent.com/REBELinBLUE/k8s-on-hypriot/master/deployments/kube-system/metrics-server/metrics-server-values.yaml
+        url: https://raw.githubusercontent.com/REBELinBLUE/k3s-on-raspbian/master/deployments/kube-system/metrics-server/metrics-server-values.yaml
