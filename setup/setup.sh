@@ -51,3 +51,4 @@ kubectl -n flux logs deployment/flux | grep identity.pub | cut -d '"' -f2
 
 #kubectl delete crd helmcharts.helm.cattle.io
 #kubectl delete crd addons.k3s.cattle.io
+#kubectl delete apiservice v1beta1.metrics.k8s.io
