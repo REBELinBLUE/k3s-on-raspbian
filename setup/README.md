@@ -1,16 +1,46 @@
-# Kubernetes on Hypriot
+# Kubernetes on RPI4
 
-## Flash Hypriot to a fresh SD card.
+## Download Raspbian Lite
+
+## Flash the SD card using balenaEtcher
+
+## Enable SSH on master and all nodes
+
+SSH is disabled by default, enable it with an empty file called ssh in the /boot/ directory.
 
 ```bash
-curl -O https://raw.githubusercontent.com/hypriot/flash/2.3.0/flash
-chmod +x flash
-sudo mv flash /usr/local/bin/flash
-
-flash -u nodes/nodeX-user-data https://github.com/hypriot/image-builder-rpi/releases/download/v1.11.4/hypriotos-rpi-v1.11.4.img.zip
+sudo touch /Volumes/boot/ssh
 ```
 
-Repeat for "node1" to "node3" using the ```nodeX-user-data``` file for each node.
+## Enable Wifi on master
+
+```bash
+touch /Volumes/boot/wpa_supplicant.conf
+```
+Add the following content to the file
+
+```
+country=GB
+ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
+update_config=1
+
+network={
+    ssid="NETWORK-NAME"
+    psk="NETWORK-PASSWORD"
+    proto=RSN
+    key_mgmt=WPA-PSK
+    pairwise=CCMP
+    auth_alg=OPEN
+}
+```
+
+## Once booted change the hostname in /etc/hostname
+
+## Enable cgroups by editing /boot/cmdline.txt
+
+```
+cgroup_enable=cpuset cgroup_memory=1 cgroup_enable=memory
+```
 
 ## Master node config
 
@@ -42,24 +72,24 @@ Edit `~/.ssh/config`
 ```
 Host master
     Hostname master.local # Or the IP address
-    User pirate
+    User pi
 
 Host node-1
     Hostname 10.0.0.2
     ForwardAgent yes
-    User pirate
+    User pi
     ProxyCommand ssh -A master -W %h:%p
 
 Host node-2
     Hostname 10.0.0.3
     ForwardAgent yes
-    User pirate
+    User pi
     ProxyCommand ssh -A master -W %h:%p
 
 Host node-3
     Hostname 10.0.0.4
     ForwardAgent yes
-    User pirate
+    User pi
     ProxyCommand ssh -A master -W %h:%p
 ```
 
@@ -77,11 +107,20 @@ iface eth0 inet static
 	gateway 10.0.0.1
 ```
 
-Disable `eth0` in `/etc/network/interfaces.d/50-cloud-init.cfg`
+Edit `/etc/network/interfaces.d/wlan0`
+
+```
+auto wlan0
+
+allow-hotplug wlan0
+iface wlan0 inet dhcp
+wpa-conf /etc/wpa_supplicant/wpa_supplicant.conf
+iface default inet dhcp
+```
 
 ### On master and all nodes
 
-Edit `/etc/cloud/templates/hosts.debian.tmpl`
+Edit `/etc/hosts`
 
 ```
 # Kubernetes cluster
@@ -96,7 +135,7 @@ Edit `/etc/cloud/templates/hosts.debian.tmpl`
 ```bash
 sudo apt update
 sudo apt upgrade -y
-sudo apt install -y isc-dhcp-server nfs-kernel-server rfkill
+sudo apt install -y isc-dhcp-server nfs-kernel-server
 sudo apt autoremove -y
 sudo systemctl disable dhcpcd.service
 sudo systemctl stop dhcpcd.service # May disconnect when you run this, power off and then back on
@@ -205,7 +244,7 @@ Edit `/etc/sysctl.conf` to enable IP routing: uncomment the `net.ipv4.ip_forward
 ```bash
 sudo lsblk -o UUID,NAME,FSTYPE,SIZE,MOUNTPOINT,LABEL,MODEL
 sudo mkdir /media/usb
-sudo chown -R pirate:pirate /media/usb
+sudo chown -R pi:pi /media/usb
 #sudo mount /dev/sda1 /media/usb -o uid=pirate,gid=pirate
 ```
 
@@ -241,15 +280,6 @@ sudo apt autoremove -y
 sudo update-rc.d nfs-common enable
 ```
 
-### On master and all nodes
-
-```bash
-sudo apt-get -y remove --purge containerd.io docker-ce docker-ce-cli && sudo apt-get autoremove -y --purge
-sudo rm -rf /var/lib/{docker,containerd} /etc/{cni,containerd,docker} /var/lib/cni
-sudo rm -rf /var/log/{containers,pods}
-sudo rm -f /etc/apt/sources.list.d/docker.list
-sudo reboot
-```
 
 ### On master
 
@@ -261,5 +291,14 @@ sudo cat /var/lib/rancher/k3s/server/node-token
 ### On nodes (replace XXX with the output of the previous command)
 
 ```bash
-curl -sfL https://get.k3s.io | K3S_URL=https://10.0.0.1:6443 K3S_TOKEN=... sh -
+curl -sfL https://get.k3s.io | K3S_URL=https://10.0.0.1:6443 K3S_TOKEN= sh -
+```
+
+### To remove from master and all nodes
+
+```bash
+sudo apt-get -y remove --purge containerd.io && sudo apt-get autoremove -y --purge
+sudo rm -rf /var/lib/{docker,containerd} /etc/{cni,containerd,docker} /var/lib/cni
+sudo rm -rf /var/log/{containers,pods}
+sudo reboot
 ```

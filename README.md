@@ -46,7 +46,7 @@ Thanks to the following pages
 
 * 4 x [Raspberry Pi 4 Model B 4GB](https://thepihut.com/products/raspberry-pi-4-model-b?variant=20064052740158)
 * [Anker USB Charger PowerPort 5 ](https://www.amazon.co.uk/gp/product/B00VTI8K9K)
-* 4 x [SanDisk Ultra 16 GB microSDHC Memory Card](https://www.amazon.co.uk/gp/product/B073K14CVB)
+* 4 x [SanDisk Ultra microSDHC Memory Card](https://www.amazon.co.uk/gp/product/B073K14CVB)
 * [TP-Link TL-SF1005D Desktop Ethernet Switch](https://www.amazon.co.uk/gp/product/B0766D8HZ3)
 * [BERLS USB 2.0 to DC Power Cord: 5.5 x 2.1mm Barrel Jack Connector](https://www.amazon.co.uk/gp/product/B07GRMJZ3M)
 * [MaGeek 1ft USB-C to USB 3.0 Cables](https://www.amazon.co.uk/gp/product/B074XQV6F4)
