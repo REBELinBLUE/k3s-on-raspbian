@@ -1,7 +1,5 @@
 #!/bin/bash
 
-set -e
-
 REPO_ROOT=$(git rev-parse --show-toplevel)
 source "$REPO_ROOT/setup/nodes.env"
 
