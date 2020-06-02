@@ -8,6 +8,7 @@
     - **traefik-forward-auth** - No chart exists
 - **kube-system**
     - **kured** - Doesn't support initContainer
+    - **local-path-provisioner** - 
 - **kubernetes-dashboard**
     - **dashboard** - Chart is for v1
 - **monitoring**

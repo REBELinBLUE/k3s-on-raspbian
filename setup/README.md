@@ -284,7 +284,7 @@ sudo update-rc.d nfs-common enable
 ### On master
 
 ```bash
-curl -sfL https://get.k3s.io | INSTALL_K3S_EXEC="--no-deploy metrics-server --no-deploy traefik" sh -
+curl -sfL https://get.k3s.io | INSTALL_K3S_EXEC="--disable metrics-server --disable traefik --disable local-storage" sh -
 sudo cat /var/lib/rancher/k3s/server/node-token
 ```
 
