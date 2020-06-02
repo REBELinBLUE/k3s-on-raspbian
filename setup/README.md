@@ -9,7 +9,7 @@
 SSH is disabled by default, enable it with an empty file called ssh in the /boot/ directory.
 
 ```bash
-sudo touch /Volumes/boot/ssh
+touch /Volumes/boot/ssh
 ```
 
 ## Enable Wifi on master
@@ -280,7 +280,6 @@ sudo apt autoremove -y
 sudo update-rc.d nfs-common enable
 ```
 
-
 ### On master
 
 ```bash
@@ -291,7 +290,7 @@ sudo cat /var/lib/rancher/k3s/server/node-token
 ### On nodes (replace XXX with the output of the previous command)
 
 ```bash
-curl -sfL https://get.k3s.io | K3S_URL=https://10.0.0.1:6443 K3S_TOKEN= sh -
+curl -sfL https://get.k3s.io | K3S_URL=https://10.0.0.1:6443 K3S_TOKEN=... sh -
 ```
 
 ### To remove from master and all nodes
