@@ -49,7 +49,7 @@ Thanks to the following pages
 * 4 x [SanDisk Ultra microSDHC Memory Card](https://www.amazon.co.uk/gp/product/B073K14CVB)
 * [Jun_Electronic 4 Layers Stackable Case](https://www.amazon.co.uk/gp/product/B07F6Y1MJ6)
 * [NETGEAR 5-Port Gigabit Ethernet PoE Switch](https://www.amazon.co.uk/dp/B072BDGQR8/)
-* 4 x 30cm Cat 5e cables (soon to be replaced with 15cm flag Cat 6 cables)
+* 4 x 30cm Cat 5e cables (soon to be replaced with 15cm flat Cat 6 cables)
 * [Western Digital My Passport for Mac 500GB](https://www.johnlewis.com/wd-my-passport-for-mac-portable-hard-drive-usb-3-0-500gb-silver/p645128)
 
 ![](./images/cluster-front.png)

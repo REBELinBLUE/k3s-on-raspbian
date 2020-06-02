@@ -1,3 +1,5 @@
+# Notes on setting up bluetooth keyboard
+
 ```
 sudo apt install bluetooth bluez-tools
 sudo /etc/init.d/bluetooth start
