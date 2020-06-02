@@ -4,9 +4,16 @@ enable_uart=0
 # Disable audio
 dtparam=audio=off
 
-# Disable WiFi and BlueTooth
+# Disable WiFi and BlueTooth (Do not disable Wifi on Master)
 dtoverlay=pi3-disable-wifi
 dtoverlay=pi3-disable-bt
+
+# Change the temperatures the PoE fan comes on
+dtoverlay=rpi-poe
+dtparam=poe_fan_temp0=50000
+dtparam=poe_fan_temp1=58000
+dtparam=poe_fan_temp2=64000
+dtparam=poe_fan_temp3=68000
 
 # Disable HDMI
 hdmi_blanking=2

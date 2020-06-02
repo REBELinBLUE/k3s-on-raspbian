@@ -45,12 +45,12 @@ Thanks to the following pages
 ## Hardware list
 
 * 4 x [Raspberry Pi 4 Model B 4GB](https://thepihut.com/products/raspberry-pi-4-model-b?variant=20064052740158)
-* [Anker USB Charger PowerPort 5 ](https://www.amazon.co.uk/gp/product/B00VTI8K9K)
+* 4 x [Raspberry Pi PoE Hat](https://thepihut.com/products/raspberry-pi-power-over-ethernet-poe-hat)
 * 4 x [SanDisk Ultra microSDHC Memory Card](https://www.amazon.co.uk/gp/product/B073K14CVB)
-* [TP-Link TL-SF1005D Desktop Ethernet Switch](https://www.amazon.co.uk/gp/product/B0766D8HZ3)
-* [BERLS USB 2.0 to DC Power Cord: 5.5 x 2.1mm Barrel Jack Connector](https://www.amazon.co.uk/gp/product/B07GRMJZ3M)
-* [MaGeek 1ft USB-C to USB 3.0 Cables](https://www.amazon.co.uk/gp/product/B074XQV6F4)
 * [Jun_Electronic 4 Layers Stackable Case](https://www.amazon.co.uk/gp/product/B07F6Y1MJ6)
-* A USB hard drive attached to the master
+* [NETGEAR 5-Port Gigabit Ethernet PoE Switch](https://www.amazon.co.uk/dp/B072BDGQR8/)
+* 4 x 30cm Cat 5e cables (soon to be replaced with 15cm flag Cat 6 cables)
+* [Western Digital My Passport for Mac 500GB](https://www.johnlewis.com/wd-my-passport-for-mac-portable-hard-drive-usb-3-0-500gb-silver/p645128)
 
-![](./images/cluster.jpg)
+![](./images/cluster-front.png)
+![](./images/cluster-back.png)
