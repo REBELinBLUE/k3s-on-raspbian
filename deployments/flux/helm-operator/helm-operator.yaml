@@ -10,7 +10,7 @@ spec:
   chart:
     repository: https://charts.fluxcd.io/
     name: helm-operator
-    version: 0.7.0
+    version: 1.1.0
   valuesFrom:
     - externalSourceRef:
         url: https://raw.githubusercontent.com/REBELinBLUE/k3s-on-raspbian/master/deployments/flux/helm-operator/helm-operator-values.yaml
