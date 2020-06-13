@@ -151,6 +151,7 @@ docker build -f Dockerfile \
 
 docker push rebelinblue/vault
 ```
+
 ## Vault Consumer
 
 ```bash
@@ -162,20 +163,6 @@ docker build -f Dockerfile \
     -t rebelinblue/vault-consumer:latest .
 
 docker push rebelinblue/vault-consumer
-```
-
-## Velero
-
-```bash
-cd velero
-
-docker build -f Dockerfile \
-    --build-arg RESTIC_VERSION="0.9.5" \
-    --build-arg VELERO_VERSION="v1.3.2" \
-    -t rebelinblue/velero:1.3.2 \
-    -t rebelinblue/velero:latest .
-
-docker push rebelinblue/velero
 ```
 
 ## Velero FS Freeze
@@ -196,8 +183,8 @@ docker push rebelinblue/velero-fsfreeze
 cd velero-plugin-for-aws
 
 docker build -f Dockerfile \
-    --build-arg VELERO_AWS_PLUGIN_VERSION="v1.0.1" \
-    -t rebelinblue/velero-plugin-for-aws:1.0.1 \
+    --build-arg VELERO_AWS_PLUGIN_VERSION="v1.1.0" \
+    -t rebelinblue/velero-plugin-for-aws:1.1.0 \
     -t rebelinblue/velero-plugin-for-aws:latest .
 
 docker push rebelinblue/velero-plugin-for-aws
