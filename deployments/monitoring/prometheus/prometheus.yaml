@@ -338,7 +338,11 @@ spec:
   replicas: 1
   resources:
     requests:
-      memory: 800Mi
+      cpu: 205m
+      memory: 600Mi
+    limits:
+      cpu: 350m
+      memory: 1Gi
   retention: 5d
   ruleSelector:
     matchLabels:
