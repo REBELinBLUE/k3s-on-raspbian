@@ -23,3 +23,11 @@ helm:
 extraEnvs:
   - name: HELM_VERSION
     value: v3
+
+resources:
+  limits:
+    cpu: 200m
+    memory: 256Mi
+  requests:
+    cpu: 50m
+    memory: 64Mi

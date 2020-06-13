@@ -30,3 +30,11 @@ prometheus:
 syncGarbageCollection:
   enabled: true
   dry: true
+
+resources:
+   limits:
+    cpu: 100m
+    memory: 256Mi
+  requests:
+    cpu: 50m
+    memory: 64Mi
