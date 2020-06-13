@@ -32,7 +32,7 @@ Thanks to the following pages
 
 ## Network topology
 
-| IP           | Function              | Mac               |
+| IP           | Function              | MAC Address       |
 | ------------ | --------------------- | ----------------- |
 | 192.168.1.1  | Router                |                   |
 | 192.168.1.18 | Master wifi interface |                   |
@@ -47,9 +47,10 @@ Thanks to the following pages
 * 4 x [Raspberry Pi 4 Model B 4GB](https://thepihut.com/products/raspberry-pi-4-model-b?variant=20064052740158)
 * 4 x [Raspberry Pi PoE Hat](https://thepihut.com/products/raspberry-pi-power-over-ethernet-poe-hat)
 * 4 x [SanDisk Ultra microSDHC Memory Card](https://www.amazon.co.uk/gp/product/B073K14CVB)
+* 4 x [15cm Flat Cat 6 cables](https://www.aliexpress.com/item/32842014328.html)
+* 4 x [Low profile heatsinks](https://thepihut.com/products/raspberry-pi-heatsink)
 * [Jun_Electronic 4 Layers Stackable Case](https://www.amazon.co.uk/gp/product/B07F6Y1MJ6)
 * [NETGEAR 5-Port Gigabit Ethernet PoE Switch](https://www.amazon.co.uk/dp/B072BDGQR8/)
-* 4 x 15cm Flat Cat 6 cables
 * [Western Digital My Passport for Mac 500GB](https://www.johnlewis.com/wd-my-passport-for-mac-portable-hard-drive-usb-3-0-500gb-silver/p645128)
 
 ![](./images/cluster-front.jpg)
