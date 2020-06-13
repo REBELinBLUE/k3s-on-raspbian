@@ -338,7 +338,7 @@ spec:
   replicas: 1
   resources:
     requests:
-      memory: 400Mi
+      memory: 800Mi
   retention: 5d
   ruleSelector:
     matchLabels:
