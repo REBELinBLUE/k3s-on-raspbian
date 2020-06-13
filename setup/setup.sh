@@ -30,7 +30,7 @@ message "Installing Flux"
 kubectl create namespace flux
 helm repo add fluxcd https://charts.fluxcd.io
 helm repo add stable https://kubernetes-charts.storage.googleapis.com
-helm upgrade --install flux --values flux-values.yaml --namespace flux fluxcd/flux
+helm upgrade --install flux --values $REPO_ROOT/deployments/flux/flux/flux-values.yaml --namespace flux fluxcd/flux
 helm upgrade --install helm-operator --values $REPO_ROOT/deployments/flux/helm-operator/helm-operator-values.yaml --namespace flux fluxcd/helm-operator
 
 message "Installing NFS Provisioner"
