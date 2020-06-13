@@ -33,7 +33,7 @@ syncGarbageCollection:
 
 resources:
   limits:
-    cpu: 100m
+    cpu: 300m
     memory: 256Mi
   requests:
     cpu: 50m
