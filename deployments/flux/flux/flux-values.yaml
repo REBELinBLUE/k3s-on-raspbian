@@ -32,7 +32,7 @@ syncGarbageCollection:
   dry: true
 
 resources:
-   limits:
+  limits:
     cpu: 100m
     memory: 256Mi
   requests:
