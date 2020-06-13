@@ -175,7 +175,7 @@ spec:
       - args:
         - --port=8080
         - --telemetry-port=8081
-        image: carlosedp/kube-state-metrics:v1.9.5
+        image: carlosedp/kube-state-metrics:v1.9.6
         name: kube-state-metrics
         ports:
         - containerPort: 8080
