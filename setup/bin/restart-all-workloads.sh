@@ -19,10 +19,10 @@ for NS in $namespaces; do
         kubectl --namespace="$NS" rollout restart daemonset "$DS"
     done
 
-    replicasets=$(kubectl --namespace="$NS" get replicasets -o json | jq -r '.items[] | .metadata.name')
+    # replicasets=$(kubectl --namespace="$NS" get replicasets -o json | jq -r '.items[] | .metadata.name')
 
-    for RS in replicasets; do
-        echo "Restarting replicaset $RS in namespace $NS"
-        kubectl --namespace="$NS" rollout restart replicaset "$RS"
-    done
+    # for RS in replicasets; do
+    #     echo "Restarting replicaset $RS in namespace $NS"
+    #     kubectl --namespace="$NS" rollout restart replicaset "$RS"
+    # done
 done
