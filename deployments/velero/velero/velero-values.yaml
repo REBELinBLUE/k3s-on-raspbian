@@ -90,6 +90,7 @@ configuration:
     AWS_SHARED_CREDENTIALS_FILE: /credentials/cloud
   backupStorageLocation:
     name: aws
+    provider: aws
     bucket: velero
     config:
       region: minio
@@ -102,5 +103,11 @@ schedules:
     schedule: "0 6 * * *"
     template:
       ttl: 120h
+      storageLocation: aws
+      includeClusterResources: true
+      includedNamespaces:
+        - '*'
+      includedResources:
+        - '*'
 
 snapshotsEnabled: false
