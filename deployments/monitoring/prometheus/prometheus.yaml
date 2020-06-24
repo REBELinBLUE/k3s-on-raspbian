@@ -341,7 +341,7 @@ spec:
       cpu: 205m
       memory: 600Mi
     limits:
-      cpu: 0.75
+      cpu: 7500m
       memory: 1.5Gi
   retention: 72h
   ruleSelector:
