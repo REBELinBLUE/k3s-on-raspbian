@@ -39,7 +39,7 @@ network={
 ## Enable cgroups by editing /boot/cmdline.txt
 
 ```
-cgroup_enable=cpuset cgroup_memory=1 cgroup_enable=memory
+sudo sed -i '$ s/$/ cgroup_enable=cpuset cgroup_enable=memory cgroup_memory=1 swapaccount=1/' /boot/cmdline.txt
 ```
 
 ## Master node config
@@ -62,6 +62,8 @@ Login to the master node, and run `ssh-keygen` to initialize your SSH key; then 
 
 ```bash
 sudo sed -i 's/^#PasswordAuthentication yes/PasswordAuthentication no/g' /etc/ssh/sshd_config
+sudo sed -i 's/^#PermitRootLogin prohibit-password/PermitRootLogin no/g' /etc/ssh/sshd_config
+sudo sed -i 's/^#PubkeyAuthentication yes/PubkeyAuthentication yes/g' /etc/ssh/sshd_config
 sudo sed -i 's/^UsePAM yes/UsePAM no/g' /etc/ssh/sshd_config
 ```
 
@@ -245,7 +247,6 @@ Edit `/etc/sysctl.conf` to enable IP routing: uncomment the `net.ipv4.ip_forward
 sudo lsblk -o UUID,NAME,FSTYPE,SIZE,MOUNTPOINT,LABEL,MODEL
 sudo mkdir /media/usb
 sudo chown -R pi:pi /media/usb
-#sudo mount /dev/sda1 /media/usb -o uid=pirate,gid=pirate
 ```
 
 Edit `/etc/fstab`
@@ -262,8 +263,8 @@ Edit `/etc/exports`
 
 ```bash
 sudo exportfs -a
-#sudo rm /lib/systemd/system/nfs-common.service
-#sudo systemctl daemon-reload
+sudo rm /lib/systemd/system/nfs-common.service
+sudo systemctl daemon-reload
 sudo update-rc.d rpcbind enable && sudo update-rc.d nfs-common enable
 sudo reboot
 ```
@@ -275,8 +276,8 @@ sudo apt update
 sudo apt upgrade -y
 sudo apt install -y rfkill nfs-common
 sudo apt autoremove -y
-#sudo rm /lib/systemd/system/nfs-common.service
-#sudo systemctl daemon-reload
+sudo rm /lib/systemd/system/nfs-common.service
+sudo systemctl daemon-reload
 sudo update-rc.d nfs-common enable
 ```
 
