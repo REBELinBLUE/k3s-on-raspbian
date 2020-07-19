@@ -26,3 +26,9 @@ for NS in $namespaces; do
     #     kubectl --namespace="$NS" rollout restart replicaset "$RS"
     # done
 done
+
+kubectl -n monitoring delete pods --all --wait=0
+kubectl -n infra delete pod -lk8s-app=traefik-ingress-controller
+kubectl -n logging delete pod/loki-0
+kubectl -n vault delete pod/vault-0
+kubectl -n kube-system delete pods --all --wait=0
