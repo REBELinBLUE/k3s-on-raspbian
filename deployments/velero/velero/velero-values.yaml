@@ -2,7 +2,7 @@ fullnameOverride: velero
 
 image:
   repository: velero/velero
-  tag: v1.4.0
+  tag: v1.4.2
 
 podAnnotations:
   SECRET_MINIO_ACCESS_KEY: /apps/shared/minio/accesskey

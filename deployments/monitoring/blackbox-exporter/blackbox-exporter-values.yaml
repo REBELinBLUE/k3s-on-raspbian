@@ -2,7 +2,7 @@ fullnameOverride: blackbox-exporter
 
 image:
   repository: prom/blackbox-exporter
-  tag: v0.16.0
+  tag: v0.17.0
 
 podDisruptionBudget:
   enabled: false

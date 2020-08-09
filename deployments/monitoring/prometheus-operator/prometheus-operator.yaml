@@ -5,7 +5,7 @@ metadata:
   labels:
     app.kubernetes.io/component: controller
     app.kubernetes.io/name: prometheus-operator
-    app.kubernetes.io/version: v0.31.1
+    app.kubernetes.io/version: v0.40.0
   name: prometheus-operator
   namespace: monitoring
 ---
@@ -15,7 +15,7 @@ metadata:
   labels:
     app.kubernetes.io/component: controller
     app.kubernetes.io/name: prometheus-operator
-    app.kubernetes.io/version: v0.31.1
+    app.kubernetes.io/version: v0.40.0
   name: prometheus-operator
 rules:
   - apiGroups:
@@ -89,7 +89,7 @@ metadata:
   labels:
     app.kubernetes.io/component: controller
     app.kubernetes.io/name: prometheus-operator
-    app.kubernetes.io/version: v0.31.1
+    app.kubernetes.io/version: v0.40.0
   name: prometheus-operator
 roleRef:
   apiGroup: rbac.authorization.k8s.io
@@ -106,7 +106,7 @@ metadata:
   labels:
     app.kubernetes.io/component: controller
     app.kubernetes.io/name: prometheus-operator
-    app.kubernetes.io/version: v0.31.1
+    app.kubernetes.io/version: v0.40.0
   name: prometheus-operator
   namespace: monitoring
 spec:
@@ -120,7 +120,7 @@ spec:
       labels:
         app.kubernetes.io/component: controller
         app.kubernetes.io/name: prometheus-operator
-        app.kubernetes.io/version: v0.31.1
+        app.kubernetes.io/version: v0.40.0
     spec:
       containers:
       - args:
@@ -128,7 +128,7 @@ spec:
         - --logtostderr=true
         - --config-reloader-image=carlosedp/configmap-reload:v0.2.2
         - --prometheus-config-reloader=carlosedp/prometheus-config-reloader:v0.37.0
-        image: carlosedp/prometheus-operator:v0.39.0
+        image: carlosedp/prometheus-operator:v0.40.0
         name: prometheus-operator
         ports:
         - containerPort: 8080
@@ -155,7 +155,7 @@ metadata:
   labels:
     app.kubernetes.io/component: controller
     app.kubernetes.io/name: prometheus-operator
-    app.kubernetes.io/version: v0.31.1
+    app.kubernetes.io/version: v0.40.0
   name: prometheus-operator
   namespace: monitoring
 spec:
@@ -174,7 +174,7 @@ metadata:
   labels:
     app.kubernetes.io/component: controller
     app.kubernetes.io/name: prometheus-operator
-    app.kubernetes.io/version: v0.31.1
+    app.kubernetes.io/version: v0.40.0
   name: prometheus-operator
   namespace: monitoring
 spec:
@@ -185,4 +185,4 @@ spec:
     matchLabels:
       app.kubernetes.io/component: controller
       app.kubernetes.io/name: prometheus-operator
-      app.kubernetes.io/version: v0.31.1
+      app.kubernetes.io/version: v0.40.0
