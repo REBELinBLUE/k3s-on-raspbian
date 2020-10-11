@@ -284,14 +284,14 @@ sudo update-rc.d nfs-common enable
 ### On master
 
 ```bash
-curl -sfL https://get.k3s.io | INSTALL_K3S_EXEC="--disable metrics-server --disable traefik --disable local-storage" sh -
+curl -sfL https://get.k3s.io | INSTALL_K3S_CHANNEL=latest INSTALL_K3S_EXEC="--disable metrics-server --disable traefik --disable local-storage" sh -
 sudo cat /var/lib/rancher/k3s/server/node-token
 ```
 
 ### On nodes (replace XXX with the output of the previous command)
 
 ```bash
-curl -sfL https://get.k3s.io | K3S_URL=https://10.0.0.1:6443 K3S_TOKEN=... sh -
+curl -sfL https://get.k3s.io | INSTALL_K3S_CHANNEL=latest K3S_URL=https://10.0.0.1:6443 K3S_TOKEN=... sh -
 ```
 
 ### To remove from master and all nodes
