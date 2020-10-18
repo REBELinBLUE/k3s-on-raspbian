@@ -18,7 +18,7 @@ FROM node:12.11.1 as build-ui
 WORKDIR /usr/src/app/frontend
 
 COPY --from=clone /usr/src/app/frontend .
-RUN yarn install && yarn build
+RUN yarn install --network-timeout 500000 && yarn build
 
 FROM golang:1.13.1-alpine as build
 
