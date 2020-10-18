@@ -21,11 +21,11 @@ docker push rebelinblue/eventrouter
 cd flux
 
 docker build -f Dockerfile \
-    --build-arg FLUX_VERSION="1.19.0" \
-    --build-arg KUBECTL_VERSION="v1.17.4" \
+    --build-arg FLUX_VERSION="1.21.0" \
+    --build-arg KUBECTL_VERSION="v1.19.3" \
     --build-arg KUSTOMIZE_VERSION="v3.2.0" \
     --build-arg SOPS_VERSION="v3.5.0" \
-    -t rebelinblue/flux:1.19.0 \
+    -t rebelinblue/flux:1.21.0 \
     -t rebelinblue/flux:latest .
 
 docker push rebelinblue/flux
@@ -63,11 +63,11 @@ docker push rebelinblue/forecastle
 cd helm-operator
 
 docker build -f Dockerfile \
-    --build-arg KUBECTL_VERSION="v1.17.4" \
+    --build-arg KUBECTL_VERSION="v1.19.3" \
     --build-arg HELM_VERSION="v2.16.3" \
-    --build-arg HELM3_VERSION="v3.1.2" \
-    --build-arg VERSION="1.1.0" \
-    -t rebelinblue/helm-operator:1.1.0 \
+    --build-arg HELM3_VERSION="v3.3.4" \
+    --build-arg VERSION="1.2.0" \
+    -t rebelinblue/helm-operator:1.2.0 \
     -t rebelinblue/helm-operator:latest .
 
 docker push rebelinblue/helm-operator
