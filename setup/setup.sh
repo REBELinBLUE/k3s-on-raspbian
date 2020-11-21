@@ -14,9 +14,9 @@ message() {
 }
 
 message "Labeling all nodes"
-kubectl taint nodes $K3S_MASTER node-role.kubernetes.io/master="":NoSchedule
+kubectl taint nodes $K3S_MASTER node-role.kubernetes.io/master="":NoSchedule --overwrite
 for node in $K3S_WORKERS_RPI; do
-    kubectl label node $node node-role.kubernetes.io/worker=worker
+    kubectl label node $node node-role.kubernetes.io/worker=worker --overwrite
 done
 
 kubectl create namespace vault
@@ -29,7 +29,7 @@ kubectl -n vault create secret generic vault-unseal-keys --from-literal="VAULT_U
 message "Installing Flux"
 kubectl create namespace flux
 helm repo add fluxcd https://charts.fluxcd.io
-helm repo add stable https://kubernetes-charts.storage.googleapis.com
+helm repo add stable https://charts.helm.sh/stable
 helm upgrade --install flux --values $REPO_ROOT/deployments/flux/flux/flux-values.yaml --namespace flux fluxcd/flux
 helm upgrade --install helm-operator --values $REPO_ROOT/deployments/flux/helm-operator/helm-operator-values.yaml --namespace flux fluxcd/helm-operator
 
@@ -51,5 +51,4 @@ kubectl -n flux logs deployment/flux | grep identity.pub | cut -d '"' -f2
 
 kubectl delete crd helmcharts.helm.cattle.io
 kubectl delete apiservice v1beta1.metrics.k8s.io
-
-#kubectl delete crd addons.k3s.cattle.io
+kubectl delete crd addons.k3s.cattle.io

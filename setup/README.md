@@ -291,13 +291,14 @@ sudo cat /var/lib/rancher/k3s/server/node-token
 ### On nodes (replace XXX with the output of the previous command)
 
 ```bash
-curl -sfL https://get.k3s.io | INSTALL_K3S_CHANNEL=latest K3S_URL=https://10.0.0.1:6443 K3S_TOKEN=... sh -
+export K3S_TOKEN=...
+curl -sfL https://get.k3s.io | INSTALL_K3S_CHANNEL=latest K3S_URL=https://10.0.0.1:6443 sh -
 ```
 
 ### To remove from master and all nodes
 
 ```bash
-sudo apt-get -y remove --purge containerd.io && sudo apt-get autoremove -y --purge
+sudo /usr/local/bin/k3s*-uninstall.sh
 sudo rm -rf /var/lib/{docker,containerd} /etc/{cni,containerd,docker} /var/lib/cni
 sudo rm -rf /var/log/{containers,pods}
 sudo reboot

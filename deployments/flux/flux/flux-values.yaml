@@ -3,6 +3,7 @@ git:
   branch: master
   path: deployments
   readonly: true
+  timeout: 3600s
 
 image:
   repository: rebelinblue/flux
