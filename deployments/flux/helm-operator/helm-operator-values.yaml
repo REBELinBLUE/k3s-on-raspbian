@@ -1,6 +1,7 @@
 createCRD: false
 
 git:
+  timeout: 3600s
   ssh:
     secretName: flux-git-deploy
 
