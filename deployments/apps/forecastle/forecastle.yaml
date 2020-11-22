@@ -8,7 +8,7 @@ metadata:
 spec:
   releaseName: forecastle
   chart:
-    git: git@github.com:stakater/Forecastle.git
+    git: https://github.com/stakater/Forecastle.git
     path: deployments/kubernetes/chart/forecastle
     ref: master
   valuesFrom:
