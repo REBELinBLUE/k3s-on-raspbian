@@ -132,6 +132,20 @@ Edit `/etc/hosts`
 10.0.0.4 node-3
 ```
 
+#### Install log2ram
+
+```
+mkdir /usr/local/src
+cd /usr/local/src
+sudo curl -Lo log2ram.tar.gz https://github.com/azlux/log2ram/archive/master.tar.gz
+sudo tar xf log2ram.tar.gz
+cd log2ram-master
+sudo chmod +x install.sh && sudo ./install.sh
+cd ..
+sudo rm -r log2ram-master log2ram.tar.gz
+sudo reboot
+```
+
 ### On master
 
 ```bash
@@ -303,3 +317,4 @@ sudo rm -rf /var/lib/{docker,containerd} /etc/{cni,containerd,docker} /var/lib/c
 sudo rm -rf /var/log/{containers,pods}
 sudo reboot
 ```
+
