@@ -24,3 +24,11 @@ gpu_mem=16
 # Increase CPU clock speed by 250mhz
 over_voltage=2
 arm_freq=1750
+
+[pi4]
+# Enable DRM VC4 V3D driver on top of the dispmanx display stack
+dtoverlay=vc4-fkms-v3d
+max_framebuffers=2
+
+[all]
+#dtoverlay=vc4-fkms-v3d
