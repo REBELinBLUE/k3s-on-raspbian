@@ -61,6 +61,8 @@ spec:
               value: ~
             - name: DOMAIN
               value: cluster.rebelinblue.com
+            - name: IPV4_URL
+              value: http://checkip.amazonaws.com/
           volumeMounts:
             - mountPath: /env
               name: env
