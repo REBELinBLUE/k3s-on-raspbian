@@ -67,7 +67,7 @@ docker build -f Dockerfile \
     --build-arg HELM_VERSION="v2.16.3" \
     --build-arg HELM3_VERSION="v3.3.4" \
     --build-arg VERSION="1.2.0" \
-    -t rebelinblue/helm-operator:1.2.0 \
+    -t rebelinblue/helm-operator:1.2.1 \
     -t rebelinblue/helm-operator:latest .
 
 docker push rebelinblue/helm-operator
