@@ -295,6 +295,16 @@ sudo systemctl daemon-reload
 sudo update-rc.d nfs-common enable
 ```
 
+### On master and nodes
+
+```bash
+sudo apt install fish
+chsh -s /usr/bin/fish
+curl -fsSL https://starship.rs/install.sh | bash
+mkdir -p ~/.config/fish/
+echo "starship init fish | source" >>  ~/.config/fish/config.fish
+```
+
 ### On master
 
 ```bash
