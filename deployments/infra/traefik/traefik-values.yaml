@@ -18,7 +18,7 @@ tolerations:
 
 nodeSelector:
   beta.kubernetes.io/arch: arm
-  node-role.kubernetes.io/master: "true"
+  node-role.kubernetes.io/control-plane: "true"
 
 metrics:
   prometheus:
