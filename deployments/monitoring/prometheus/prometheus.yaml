@@ -333,7 +333,7 @@ spec:
   nodeSelector:
     kubernetes.io/os: linux
     kubernetes.io/arch: arm
-    node-role.kubernetes.io/master: "true"
+    node-role.kubernetes.io/control-plane: "true"
   podMonitorSelector: {}
   replicas: 1
   resources:
@@ -368,7 +368,7 @@ spec:
             storage: 100Gi
   tolerations:
     - effect: NoSchedule
-      key: node-role.kubernetes.io/master
+      key: node-role.kubernetes.io/control-plane
   version: v2.20.1
 ---
 apiVersion: v1
