@@ -308,7 +308,7 @@ echo "starship init fish | source" >>  ~/.config/fish/config.fish
 ### On master
 
 ```bash
-curl -sfL https://get.k3s.io | INSTALL_K3S_CHANNEL=latest INSTALL_K3S_EXEC="--disable metrics-server --disable traefik --disable local-storage" sh -
+curl -sfL https://get.k3s.io | INSTALL_K3S_CHANNEL=latest INSTALL_K3S_EXEC="--disable metrics-server --disable traefik --disable local-storage --kube-apiserver-arg feature-gates=RemoveSelfLink=false" sh -
 sudo cat /var/lib/rancher/k3s/server/node-token
 ```
 
